@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/post">Post</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        {% else %}
+            <li><a href="/">JustIn</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/signup">Create An Account</a></li>
+        {% endif %}
+    </ul>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ol>
+                {% for cat, msg in messages %}
+                    {% if cat == 'error' %}
+                        <li id="error">
+                            {{ msg }}
+                        </li>
+                    {% else %}
+                        <li id="success">
+                            {{ msg }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        {% endif %}
+    {% endwith %}
+
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+    
+</body>
+</html>

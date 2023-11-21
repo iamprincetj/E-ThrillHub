@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} JustIn | News {% endblock %}
+
+{% block content %}
+
+    {% for pos in post %}
+        <img src="/image/{{ pos.image_path._id }}" alt="" width="100px" height="100px">
+    {% endfor %}
+
+    {% if page < post_len %}
+        <a href="/news?page={{ page + 1 }}">load more</a>
+    {% endif %}
+
+    {% if page > 1 %}
+        <a href="/news?page={{ page - 1 }}">Previous page</a>
+    {% endif %}
+
+{% endblock %}
