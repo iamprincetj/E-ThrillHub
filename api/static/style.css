@@ -4,7 +4,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-ul {
+#main-ul {
     height: 5em;
     display: flex;
     align-items: center;
@@ -12,16 +12,20 @@ ul {
     background-color: rgb(8,25,44);
 }
 
-ul li {
+#main-ul li {
     list-style-type: none;
     margin: 1.5rem;
+    color: hsl(0, 0%, 100%);
 }
 
-ul li a {
+#main-ul li a {
     text-decoration: none;
     color: hsl(0, 0%, 100%);
 }
 
+#main-ul #post {
+    cursor: pointer;
+}
 form {
     border: 1px solid black;
     border-radius: 5px;
@@ -82,4 +86,13 @@ ol {
     background-color: rgb(86, 248, 86);
     border-radius: 3px;
     text-shadow: 0 0 2px green;
+}
+
+#main-ul li .post {
+    display: none;
+    position: absolute;
+    top: 5em;
+    right: 0;
+    background-color: rgb(158, 200, 249);
+    width: 20%;
 }

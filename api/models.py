@@ -1,7 +1,25 @@
 from mongoengine import *
 from flask_login import UserMixin
+import certifi
 
-connect('tumblelog')
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
+db_username = os.getenv("DATABASE_USERNAME")
+db_password = os.getenv("DATABASE_PASSWORD")
+
+
+ca = certifi.where()
+
+#uri = "mongodb+srv://princetj:wAvxiXqXUgJP9vH7@justincluster0.pvvyuo6.mongodb.net/sample_airbnb?retryWrites=true&ssl=true&w=majority"
+uri = f"mongodb+srv://{db_username}:{db_password}@alxportfolio1.rfv02wi.mongodb.net/JustIN_project?retryWrites=true&ssl=true&w=majority"
+
+#connect(host=uri, alias='default', tlsCAFile=ca)
+con = connect(host=uri, tlsCAFile=ca)
+#con = connect("tumblelog")
+db = con.JustIN_project
 
 class Comments(EmbeddedDocument):
     content = StringField()

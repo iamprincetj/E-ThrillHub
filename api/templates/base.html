@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
+    <link rel="shortcut icon" href="../robot.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='robot.png') }}">
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
-    <ul>
+    <ul id="main-ul">
         {% if user.is_authenticated %}
             <li><a href="/">Home</a></li>
             <li><a href="/news">News</a></li>
-            <li><a href="/post">Post</a></li>
+            <li id="post">Post
+                <ul class="post">
+                    <li><a href="/post/textpost">Textpost</a></li>
+                    <li><a href="/post/linkpost">Linkpost</a></li>
+                    <li><a href="/post/imagepost">Imagepost</a></li>
+                </ul>
+            </li>
             <li><a href="/auth/logout">Logout</a></li>
         {% else %}
             <li><a href="/">JustIn</a></li>
@@ -45,4 +53,5 @@
     </div>
     
 </body>
+    <script src="../static/index.js"></script>
 </html>

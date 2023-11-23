@@ -1,9 +1,15 @@
-from flask import Blueprint, render_template, redirect, request, flash, url_for, Response
+from io import BytesIO
+import ssl
+from flask import Blueprint, render_template, redirect, request, flash, send_file, url_for, Response
 from flask_login import current_user, login_required
-from api.models import Post, TextPost, ImagePost, LinkPost, User
+from api.models import Post, TextPost, ImagePost, LinkPost, User, db
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from gridfs import GridFS
+import certifi
+
+
+ca = certifi.where()
 
 views = Blueprint('views', __name__)
 
@@ -20,7 +26,6 @@ def news():
     offset = (page - 1) * posts_per_page
     post = Post.objects().skip(offset).limit(posts_per_page)
     post_len = len(Post.objects())
-    print(post_len)
     return render_template('news.html', user=current_user, post=post, page=page, post_len=post_len)
 
 @views.route('/post', methods=['GET', 'POST'])
@@ -44,6 +49,13 @@ def post():
 
 @views.route('/post/textpost', methods=['GET', 'POST'])
 def textpost():
+    if request.method == 'POST':
+        user = User.objects(id=current_user.id).first()
+        text = TextPost(author=user)
+        text.content = request.form.get('content')
+        text.title = request.form.get('title')
+        text.save()
+        flash('Post Created!', category='success')
     return render_template('textpost.html', user=current_user)
 
 @views.route('/post/imagepost', methods=['GET', 'POST'])
@@ -59,14 +71,26 @@ def imagepost():
 
 @views.route('/post/linkpost', methods=['GET', 'POST'])
 def linkpost():
+    if request.method == 'POST':
+        user = User.objects(id=current_user.id).first()
+        link = LinkPost(title='my first post', author=user)
+        link.link_url = request.form.get('link_url')
+        link.save()
+        flash('Post Created!', category='success')
     return render_template('linkpost.html', user=current_user)
 
 @views.route('/image/<image_id>')
 def get_image(image_id):
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client['tumblelog']  # replace with your database name
+    print(db) # replace with your database name
     fs = GridFS(db)
     file_id = ObjectId(image_id)
     file = fs.get(file_id)
-    response = Response(file.read(), mimetype='image/jpeg')
+    response = Response(file.read(), mimetype='image/png')
     return response
+
+@views.route('/images/<id>')
+def serve_image(id):
+    img = ImagePost.objects.with_id(id)
+    return send_file(BytesIO(img.image_path.read()), mimetype='image/jpeg')
+
+

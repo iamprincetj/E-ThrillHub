@@ -36,3 +36,16 @@ print(image_id)
 #     return img.read()
 
 
+'''
+from flask import request
+
+@views.route('/news')
+@login_required
+def news():
+    page = request.args.get('page', default=1, type=int)
+    posts_per_page = 20
+    offset = (page - 1) * posts_per_page
+    posts = Post.objects().skip(offset).limit(posts_per_page)
+    return render_template('news.html', user=current_user, post=posts)
+
+'''

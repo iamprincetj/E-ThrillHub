@@ -4,14 +4,10 @@
 
 {% block content %}
 
-    <form action="" method="POST">
-        <label for="textpost">textpost</label>
-        <input type="checkbox" name="textpost" id="textpost">
-        <label for="linkpost">linkpost</label>
-        <input type="checkbox" name="linkpost" id="linkpost">
-        <label for="imagepost">imagepost</label>
-        <input type="checkbox" name="imagepost" id="imagepost">
-        <button type="submit">Done</button>
-    </form>
+    <ul>
+        <li><a href="/post/textpost">Textpost</a></li>
+        <li><a href="/post/linkpost">Linkpost</a></li>
+        <li><a href="/post/imagepost">Imagepost</a></li>
+    </ul>
 
 {% endblock %}
