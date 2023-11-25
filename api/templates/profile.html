@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} {{ searched_user.username }} {% endblock %}
+
+{% block content %}
+
+    <h1> <img src="" alt=""> {{ searched_user.username }} </h1>
+
+    {% if user.username == searched_user.username %}
+        <form action="" method="post">
+            <label for="change_username">Edit username</label>
+            <input type="text" name="change_username" id="change_username">
+            <label for="change_profile_pic">Edit Profile Picture</label>
+            <input type="file" name="change_profile_pic" id="change_profile_pic">
+            <button type="submit">SUBMIT</button>
+        </form>
+    {% endif %}
+
+    {% for pos in post %}
+        {% if pos._cls|lower == 'Post.Imagepost'|lower %}
+            <a href="/image/{{ pos.image_path._id }}" target="_blank"><img src="/image/{{ pos.image_path._id }}" alt="" width="100px" height="100px"></a>
+            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+        {% endif %}
+        {% if pos._cls|lower == 'Post.Textpost'|lower %}
+            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+            <p>{{ pos.content }}</p>
+        {% endif %}
+        {% if pos._cls|lower == 'Post.Linkpost'|lower %}
+            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+            <a href="{{ pos.link_url }}" target="_blank">{{ pos.link_url }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page < post_len %}
+        <a href="/profile/{{ searched_user.username }}?page={{ page + 1 }}">load more</a>
+    {% endif %}
+
+    {% if page > 1 %}
+        <a href="/profile/{{ searched_user.username }}?page={{ page - 1 }}">Previous page</a>
+    {% endif %}
+
+{% endblock %}

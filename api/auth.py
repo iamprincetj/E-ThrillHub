@@ -44,7 +44,7 @@ def signup():
         elif confirm_password != password:
             flash("passwords don't match")
         else:
-            user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'))
+            user = User(email=email, username=username, password=generate_password_hash(password, method='scrypt'))
             user.save()
             flash('Account Created')
     return render_template('signup.html', user=current_user)

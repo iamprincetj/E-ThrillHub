@@ -62,7 +62,9 @@ def textpost():
 def imagepost():
     if request.method == 'POST':
         user = User.objects(id=current_user.id).first()
-        img = ImagePost(title='my first post', author=user)
+        img = ImagePost(author=user)
+        title = request.form.get('title')
+        img.title = title
         file = request.files['imagepost'] 
         print(request.files['imagepost'])
         img.image_path.put(file)
@@ -85,7 +87,7 @@ def get_image(image_id):
     fs = GridFS(db)
     file_id = ObjectId(image_id)
     file = fs.get(file_id)
-    response = Response(file.read(), mimetype='image/png')
+    response = Response(file.read(), mimetype='image/*')
     return response
 
 @views.route('/images/<id>')
@@ -93,4 +95,22 @@ def serve_image(id):
     img = ImagePost.objects.with_id(id)
     return send_file(BytesIO(img.image_path.read()), mimetype='image/jpeg')
 
+@views.route('/profile/<username>', methods=['GET', 'POST'])
+def profile(username):
+    if request.method == "POST":
+        new_username = request.form.get("change_username")
+        exist_user = User.objects(username=new_username).first()
+        if exist_user:
+            flash('Username already taken, Try another', category='error')
+        else:
+            User.objects(username=username).update(username=new_username)
+            flash('Username successfully changed', category='success')
+            return redirect(f'/profile/{new_username}')
 
+    user = User.objects(username=username).first()
+    page = request.args.get('page', default=1, type=int)
+    posts_per_page = 1
+    offset = (page - 1) * posts_per_page
+    post = Post.objects(author=user).skip(offset).limit(posts_per_page)
+    post_len = len(Post.objects(author=user))
+    return render_template('profile.html', user=current_user, post=post, page=page, post_len=post_len, searched_user=user)

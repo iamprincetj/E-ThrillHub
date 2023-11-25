@@ -16,10 +16,11 @@ ca = certifi.where()
 #uri = "mongodb+srv://princetj:wAvxiXqXUgJP9vH7@justincluster0.pvvyuo6.mongodb.net/sample_airbnb?retryWrites=true&ssl=true&w=majority"
 uri = f"mongodb+srv://{db_username}:{db_password}@alxportfolio1.rfv02wi.mongodb.net/JustIN_project?retryWrites=true&ssl=true&w=majority"
 
-#connect(host=uri, alias='default', tlsCAFile=ca)
 con = connect(host=uri, tlsCAFile=ca)
-#con = connect("tumblelog")
 db = con.JustIN_project
+#con = connect("tumblelog")
+#db = con.tumblelog
+
 
 class Comments(EmbeddedDocument):
     content = StringField()
@@ -30,6 +31,7 @@ class User(Document, UserMixin):
     email = StringField(required=True)
     username = StringField()
     password = StringField()
+    profile_pic = FileField()
 
 class Post(Document):
     title = StringField(max_length=120, required=True)
@@ -47,3 +49,4 @@ class ImagePost(Post):
 
 class LinkPost(Post):
     link_url = StringField()
+
