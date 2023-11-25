@@ -83,7 +83,7 @@ def linkpost():
 
 @views.route('/image/<image_id>')
 def get_image(image_id):
-    print(db) # replace with your database name
+    #print(db)  replace with your database name
     fs = GridFS(db)
     file_id = ObjectId(image_id)
     file = fs.get(file_id)
