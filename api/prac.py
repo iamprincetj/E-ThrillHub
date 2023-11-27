@@ -1,4 +1,4 @@
-from mongoengine import connect
+'''from mongoengine import connect
 from models import User, Post, ImagePost
 from flask import Flask
 import json
@@ -36,7 +36,7 @@ print(image_id)
 #     return img.read()
 
 
-'''
+
 from flask import request
 
 @views.route('/news')
@@ -49,3 +49,10 @@ def news():
     return render_template('news.html', user=current_user, post=posts)
 
 '''
+
+from models import User, Post, ImagePost
+
+posts = Post.objects()
+
+for post in posts:
+    print(post.author._id)

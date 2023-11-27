@@ -1,3 +1,4 @@
+from hashlib import md5
 from flask import Blueprint, render_template, redirect, request, flash, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, login_required, logout_user
@@ -44,7 +45,8 @@ def signup():
         elif confirm_password != password:
             flash("passwords don't match")
         else:
-            user = User(email=email, username=username, password=generate_password_hash(password, method='scrypt'))
+            img = f'https://www.gravatar.com/avatar/{md5(email.encode("utf-8")).hexdigest()}?d=identicon&s=128'
+            user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'), profile_pic=img)
             user.save()
             flash('Account Created')
     return render_template('signup.html', user=current_user)

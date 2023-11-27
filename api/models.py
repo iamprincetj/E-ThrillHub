@@ -31,7 +31,7 @@ class User(Document, UserMixin):
     email = StringField(required=True)
     username = StringField()
     password = StringField()
-    profile_pic = FileField()
+    profile_pic = StringField()
 
 class Post(Document):
     title = StringField(max_length=120, required=True)
