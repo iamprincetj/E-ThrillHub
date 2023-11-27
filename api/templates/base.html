@@ -12,8 +12,8 @@
 
     <ul id="main-ul">
         {% if user.is_authenticated %}
-            <li><a href="/">Home</a></li>
             <li><a href="/news">News</a></li>
+            <li><a href="/profile/{{ user.username }}">Profile</a></li>
             <li id="post">Post
                 <ul class="post">
                     <li><a href="/post/textpost">Textpost</a></li>

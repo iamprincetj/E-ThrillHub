@@ -1,3 +1,4 @@
+from hashlib import md5
 from io import BytesIO
 import ssl
 from flask import Blueprint, render_template, redirect, request, flash, send_file, url_for, Response
@@ -69,6 +70,7 @@ def imagepost():
         print(request.files['imagepost'])
         img.image_path.put(file)
         img.save()
+        flash('Post Created!', category='success')
     return render_template('imagepost.html', user=current_user)
 
 @views.route('/post/linkpost', methods=['GET', 'POST'])
@@ -99,13 +101,23 @@ def serve_image(id):
 def profile(username):
     if request.method == "POST":
         new_username = request.form.get("change_username")
-        exist_user = User.objects(username=new_username).first()
-        if exist_user:
-            flash('Username already taken, Try another', category='error')
-        else:
-            User.objects(username=username).update(username=new_username)
-            flash('Username successfully changed', category='success')
-            return redirect(f'/profile/{new_username}')
+        new_profile_pic = request.files['change_profile_pic']
+        if new_profile_pic:
+            user = User.objects(username=username).first()
+            if user.changed_profile_pic.read():
+                user.changed_profile_pic.delete()
+            user.changed_profile_pic.put(new_profile_pic)
+            user.save()
+            flash('Profile picture changed', category='success')
+            return redirect(f'/profile/{username}')
+        if new_username:
+            exist_user = User.objects(username=new_username).first()
+            if exist_user:
+                flash('Username already taken, Try another', category='error')
+            else:
+                User.objects(username=username).update(username=new_username)
+                flash('Username successfully changed', category='success')
+                return redirect(f'/profile/{new_username}')
 
     user = User.objects(username=username).first()
     page = request.args.get('page', default=1, type=int)

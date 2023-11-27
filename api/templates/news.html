@@ -7,14 +7,37 @@
     {% for pos in post %}
         {% if pos._cls|lower == 'Post.Imagepost'|lower %}
         <a href="/image/{{ pos.image_path._id }}" target="_blank"><img src="/image/{{ pos.image_path._id }}" alt="" width="100px" height="100px"></a>
-            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+            <p>
+                {% if pos.author.changed_profile_pic %}
+                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
+                {% else %}
+                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
+                {% endif %}
+                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
+                </a> says {{ pos.title }}
+            </p>
         {% endif %}
         {% if pos._cls|lower == 'Post.Textpost'|lower %}
-            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+            <p>
+                {% if pos.author.changed_profile_pic %}
+                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
+                {% else %}
+                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
+                {% endif %}
+                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
+                </a> says {{ pos.title }}
+            </p>
             <p>{{ pos.content }}</p>
         {% endif %}
         {% if pos._cls|lower == 'Post.Linkpost'|lower %}
-            <p><a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}</a> says {{ pos.title }}</p>
+            <p>
+                {% if pos.author.changed_profile_pic %}
+                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
+                {% else %}
+                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
+                {% endif %}
+                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
+                </a> says {{ pos.title }}</p>
             <a href="{{ pos.link_url }}" target="_blank">{{ pos.link_url }}</a>
         {% endif %}
     {% endfor %}
