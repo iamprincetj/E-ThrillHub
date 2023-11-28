@@ -11,8 +11,8 @@ load_dotenv()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'the_secret_key_is_nothing'
-    os.environ['FLASK_ENV'] = os.getenv('FLASK_ENV')
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['FLASK_ENV'] = os.getenv('FLASK_ENV')
 
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(views)
