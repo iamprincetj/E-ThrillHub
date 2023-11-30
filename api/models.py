@@ -16,10 +16,10 @@ ca = certifi.where()
 #uri = "mongodb+srv://princetj:wAvxiXqXUgJP9vH7@justincluster0.pvvyuo6.mongodb.net/sample_airbnb?retryWrites=true&ssl=true&w=majority"
 uri = f"mongodb+srv://{db_username}:{db_password}@alxportfolio1.rfv02wi.mongodb.net/JustIN_project?retryWrites=true&ssl=true&w=majority"
 
-con = connect(host=uri, tlsCAFile=ca)
-db = con.JustIN_project
-#con = connect("tumblelog")
-#db = con.tumblelog
+#con = connect(host=uri, tlsCAFile=ca)
+#db = con.JustIN_project
+con = connect("tumblelog")
+db = con.tumblelog
 
 
 class Comments(EmbeddedDocument):
@@ -37,17 +37,13 @@ class User(Document, UserMixin):
 class Post(Document):
     title = StringField(max_length=120, required=True)
     author = ReferenceField(User, reverse_delete_rule=CASCADE)
+    image_path = FileField()
+    link_url = StringField()
     tags = ListField(StringField(max_length=30))
     comments = ListField(EmbeddedDocumentField(Comments))
 
     meta = {'allow_inheritance': True}
 
-class TextPost(Post):
-    content = StringField()
-
-class ImagePost(Post):
+class ImagePost(Document):
     image_path = FileField()
-
-class LinkPost(Post):
-    link_url = StringField()
 

@@ -21,6 +21,8 @@ def login():
                 flash('Incorrect password, try again', category='error')
         else:
             flash("User with that email doesn't exist", category='error')
+    if request.method == 'GET' and current_user.is_authenticated:
+        return redirect(url_for('views.home'))
     return render_template("login.html", user=current_user)
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -49,6 +51,8 @@ def signup():
             user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'), profile_pic=img)
             user.save()
             flash('Account Created')
+    if request.method == 'GET' and current_user.is_authenticated:
+        return redirect(url_for('views.home'))
     return render_template('signup.html', user=current_user)
 
 @auth.route('/logout')

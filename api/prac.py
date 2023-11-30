@@ -50,9 +50,8 @@ def news():
 
 '''
 
-from models import User, Post, ImagePost
+from hashlib import md5
+email = 'tochukwunwanze5@gmail.com'
 
-posts = Post.objects()
-
-for post in posts:
-    print(post.author._id)
+img = f'https://www.gravatar.com/avatar/{md5(email.encode("utf-8")).hexdigest()}?d=identicon&s=128'
+print(img)

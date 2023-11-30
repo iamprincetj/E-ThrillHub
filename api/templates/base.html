@@ -7,23 +7,18 @@
     <link rel="shortcut icon" href="../robot.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ url_for('static', filename='robot.png') }}">
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
     <ul id="main-ul">
         {% if user.is_authenticated %}
+            <li><a href="/">JustIn</a></li>
             <li><a href="/news">News</a></li>
             <li><a href="/profile/{{ user.username }}">Profile</a></li>
-            <li id="post">Post
-                <ul class="post">
-                    <li><a href="/post/textpost">Textpost</a></li>
-                    <li><a href="/post/linkpost">Linkpost</a></li>
-                    <li><a href="/post/imagepost">Imagepost</a></li>
-                </ul>
-            </li>
+            <li id="post">Post</li>
             <li><a href="/auth/logout">Logout</a></li>
         {% else %}
-            <li><a href="/">JustIn</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/auth/login">Login</a></li>
             <li><a href="/auth/signup">Create An Account</a></li>
@@ -48,10 +43,37 @@
         {% endif %}
     {% endwith %}
 
+    <div id="post-div" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="/makepost" method="POST" enctype="multipart/form-data">
+                <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?!" required="true"></textarea>
+                <label for="linkpost" id="label-link">
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                </label>
+                <input type="url" name="linkpost" id="linkpost">
+                <label for="imagepost" id="label-image">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                </label>
+                <input type="file" name="imagepost" id="imagepost">
+                <label for="tags" id="label-tags">
+                    <i class="fa fa-tag" aria-hidden="true"></i>
+                </label>
+                <input type="text" name="tags" id="tags">
+                <div id="show-img">
+                    <span class="close img-close">&times;</span>
+                </div>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+    </div>
+
     <div>
         {% block content %} {% endblock %}
     </div>
     
 </body>
     <script src="../static/index.js"></script>
+    <script src="../static/post.js"></script>
+    <script src="../static/profile.js"></script>
 </html>

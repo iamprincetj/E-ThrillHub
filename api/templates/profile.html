@@ -6,16 +6,16 @@
 
     {% if searched_user.changed_profile_pic %}
         <div id="profile-div">
-            <img src="/image/{{ searched_user.changed_profile_pic._id }}" alt="" id="pro_pic"> {{ searched_user.username }}
+            <img src="/image/{{ searched_user.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp"> {{ searched_user.username }}
         </div>
     {% else %}
         <div id="profile-div">
-            <img src="{{ searched_user.profile_pic }}" alt="" id="pro_pic"> {{ searched_user.username }}
+            <img src="{{ searched_user.profile_pic }}" alt="" id="pro_pic" class="pp"> {{ searched_user.username }}
         </div>
     {% endif %}
 
 
-    {% if user.username == searched_user.username %}
+    <!--{% if user.username == searched_user.username %}
         <form action="" method="POST" enctype="multipart/form-data">
             <label for="change_username">Edit username</label>
             <input type="text" name="change_username" id="change_username">
@@ -23,47 +23,36 @@
             <input type="file" name="change_profile_pic" id="change_profile_pic">
             <button type="submit">SUBMIT</button>
         </form>
-    {% endif %}
+    {% endif %} -->
 
     {% for pos in post %}
-        {% if pos._cls|lower == 'Post.Imagepost'|lower %}
-            <a href="/image/{{ pos.image_path._id }}" target="_blank">
-                <img src="/image/{{ pos.image_path._id }}" alt="" width="100px" height="100px">
-            </a>
-            <p>
-                {% if pos.author.changed_profile_pic %}
-                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
-                {% else %}
-                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
+        <div id="post_container">
+            {% if pos.author.changed_profile_pic %}
+                <div id="profile-div">
+                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">
+                </div>
+            {% else %}
+                <div id="profile-div">
+                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic" class="pp">
+                </div>
+            {% endif %}
+            <div id="post_header">
+                <p id="post_username"> {{ pos.author.username }} </p>
+                <p class="title"> {{ pos.title }} </p>
+                {% if pos.link_url %}
+                    <a href="{{ pos.link_url }}">{{ pos.link_url }}</a>
                 {% endif %}
-                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
-                </a> says {{ pos.title }}
-            </p>
-        {% endif %}
-        {% if pos._cls|lower == 'Post.Textpost'|lower %}
-            <p>
-                {% if pos.author.changed_profile_pic %}
-                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
-                {% else %}
-                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
+            </div>
+            <div id="post_img">
+                {% if pos.image_path %}
+                    <img src="/image/{{ pos.image_path._id }}" alt="" class="post-image">
                 {% endif %}
-                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
-                </a> says {{ pos.title }}</p>
-            <p>{{ pos.content }}</p>
-        {% endif %}
-        {% if pos._cls|lower == 'Post.Linkpost'|lower %}
-            <p>
-                {% if pos.author.changed_profile_pic %}
-                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic">
-                {% else %}
-                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic">
-                {% endif %}
-                <a href="/profile/{{ pos.author.username }}">{{ pos.author.username }}
-                </a> says {{ pos.title }}
-            </p>
-            <a href="{{ pos.link_url }}" target="_blank">{{ pos.link_url }}</a>
-        {% endif %}
+            </div>
+        </div>
     {% endfor %}
+    <div class="pro_pic_modal">
+        <span class="close profile-pic-close">&times;</span>
+    </div>
     {% if page < post_len %}
         <a href="/profile/{{ searched_user.username }}?page={{ page + 1 }}">load more</a>
     {% endif %}
@@ -73,3 +62,5 @@
     {% endif %}
 
 {% endblock %}
+
+<script src="../static/profile.js"></script>

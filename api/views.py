@@ -3,7 +3,7 @@ from io import BytesIO
 import ssl
 from flask import Blueprint, render_template, redirect, request, flash, send_file, url_for, Response
 from flask_login import current_user, login_required
-from api.models import Post, TextPost, ImagePost, LinkPost, User, db
+from api.models import Post, User, db, ImagePost
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from gridfs import GridFS
@@ -14,20 +14,23 @@ ca = certifi.where()
 
 views = Blueprint('views', __name__)
 
-@views.route('/')
+
+@views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
     return render_template('index.html', user=current_user)
 
-@views.route('/news')
+@views.route('/news', methods=['GET', 'POST'])
 @login_required
 def news():
     page = request.args.get('page', default=1, type=int)
-    posts_per_page = 1
+    posts_per_page = 5
     offset = (page - 1) * posts_per_page
-    post = Post.objects().skip(offset).limit(posts_per_page)
+    posts = Post.objects().skip(offset).limit(posts_per_page)
     post_len = len(Post.objects())
-    return render_template('news.html', user=current_user, post=post, page=page, post_len=post_len)
+    for post in posts:
+        print(post.title)
+    return render_template('news.html', user=current_user, post=posts, page=page, post_len=post_len)
 
 @views.route('/post', methods=['GET', 'POST'])
 @login_required
@@ -48,40 +51,6 @@ def post():
             flash('Must Select One Post Type', category='error')
     return render_template('post.html', user=current_user)
 
-@views.route('/post/textpost', methods=['GET', 'POST'])
-def textpost():
-    if request.method == 'POST':
-        user = User.objects(id=current_user.id).first()
-        text = TextPost(author=user)
-        text.content = request.form.get('content')
-        text.title = request.form.get('title')
-        text.save()
-        flash('Post Created!', category='success')
-    return render_template('textpost.html', user=current_user)
-
-@views.route('/post/imagepost', methods=['GET', 'POST'])
-def imagepost():
-    if request.method == 'POST':
-        user = User.objects(id=current_user.id).first()
-        img = ImagePost(author=user)
-        title = request.form.get('title')
-        img.title = title
-        file = request.files['imagepost'] 
-        print(request.files['imagepost'])
-        img.image_path.put(file)
-        img.save()
-        flash('Post Created!', category='success')
-    return render_template('imagepost.html', user=current_user)
-
-@views.route('/post/linkpost', methods=['GET', 'POST'])
-def linkpost():
-    if request.method == 'POST':
-        user = User.objects(id=current_user.id).first()
-        link = LinkPost(title='my first post', author=user)
-        link.link_url = request.form.get('link_url')
-        link.save()
-        flash('Post Created!', category='success')
-    return render_template('linkpost.html', user=current_user)
 
 @views.route('/image/<image_id>')
 def get_image(image_id):
@@ -100,6 +69,7 @@ def serve_image(id):
 @views.route('/profile/<username>', methods=['GET', 'POST'])
 def profile(username):
     if request.method == "POST":
+        
         new_username = request.form.get("change_username")
         new_profile_pic = request.files['change_profile_pic']
         if new_profile_pic:
@@ -126,3 +96,21 @@ def profile(username):
     post = Post.objects(author=user).skip(offset).limit(posts_per_page)
     post_len = len(Post.objects(author=user))
     return render_template('profile.html', user=current_user, post=post, page=page, post_len=post_len, searched_user=user)
+
+@views.route('/makepost', methods=['POST'])
+def makepost():
+    user = User.objects(id=current_user.id).first()
+    title = request.form.get('title')
+    link = request.form.get('linkpost')
+    image = request.files.get('imagepost')
+    post = Post(author=user)
+    if len(title) == "":
+        flash('title must not be empty, say something', category='error')
+    post.title = title
+    post.link_url = link
+    if image.filename != "":
+        post.image_path.put(image)
+    post.save()
+    print(title, link, image.filename, image.name, image.headers, image.mimetype, user.username)
+    flash('Post Created!', category='success')
+    return redirect('/')

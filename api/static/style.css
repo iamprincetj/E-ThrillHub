@@ -106,8 +106,131 @@ ol {
     position: relative;
     top: 1em;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 #profile-div {
     font-size: 20px;
+}
+
+#post-div, .pro_pic_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+#post-div .modal-content{
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255, 0.5);
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+#post-div .modal-content form {
+    border: 1px solid blue;
+    width: inherit;
+    height: 100%;
+}
+
+#post-div .modal-content form textarea {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+#imagepost, #linkpost, #tags {
+    display: none;
+}
+
+#label-link, #label-image, #label-tags {
+    cursor: pointer;
+    background-color: rgb(191, 251, 251);
+    margin: 5px;
+    width: 3em;
+    padding: 1px;
+    text-align: center;
+    color:hsl(0, 0%, 100%);
+    text-shadow: 0px 0px 2px blue;
+    direction: ltr;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .img-close {
+    position: relative;
+    top: -10px;
+    left: -50%;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+  }
+
+  #show-img {
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        margin: 5px;
+  }
+
+  .img-fluid {
+      width: 50%;
+      height: 50%;
+  }
+
+  .profile-pic-img {
+    display: block;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255, 0.5);
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+
+
+#post_container {
+    border: 1px solid black;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+} 
+
+.post-image, #post_header {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 1em;
+}
+
+#post_img {
+    margin-top: 1rem;
 }
