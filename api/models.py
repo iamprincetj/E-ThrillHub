@@ -16,10 +16,10 @@ ca = certifi.where()
 #uri = "mongodb+srv://princetj:wAvxiXqXUgJP9vH7@justincluster0.pvvyuo6.mongodb.net/sample_airbnb?retryWrites=true&ssl=true&w=majority"
 uri = f"mongodb+srv://{db_username}:{db_password}@alxportfolio1.rfv02wi.mongodb.net/JustIN_project?retryWrites=true&ssl=true&w=majority"
 
-#con = connect(host=uri, tlsCAFile=ca)
-#db = con.JustIN_project
-con = connect("tumblelog")
-db = con.tumblelog
+con = connect(host=uri, tlsCAFile=ca)
+db = con.JustIN_project
+#con = connect("tumblelog")
+#db = con.tumblelog
 
 
 class Comments(EmbeddedDocument):
