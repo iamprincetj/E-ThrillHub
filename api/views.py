@@ -113,4 +113,4 @@ def makepost():
     post.save()
     print(title, link, image.filename, image.name, image.headers, image.mimetype, user.username)
     flash('Post Created!', category='success')
-    return redirect('/')
+    return redirect(url_for('views.news'))
