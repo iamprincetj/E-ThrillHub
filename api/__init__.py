@@ -4,6 +4,7 @@ from api.views import views
 from flask_login import LoginManager
 import os
 from dotenv import load_dotenv
+from flask_mail import Mail
 
 load_dotenv()
 
@@ -17,6 +18,8 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(views)
     from api.models import User
+
+    mail = Mail(app)
 
     manager = LoginManager()
     manager.login_view = 'auth.login'

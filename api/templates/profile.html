@@ -14,16 +14,9 @@
         </div>
     {% endif %}
 
-
-    <!--{% if user.username == searched_user.username %}
-        <form action="" method="POST" enctype="multipart/form-data">
-            <label for="change_username">Edit username</label>
-            <input type="text" name="change_username" id="change_username">
-            <label for="change_profile_pic">Edit Profile Picture</label>
-            <input type="file" name="change_profile_pic" id="change_profile_pic">
-            <button type="submit">SUBMIT</button>
-        </form>
-    {% endif %} -->
+    {% if user == searched_user %}
+        <a href="/profile/{{ user.username }}/Edit_Profile">Edit Profile</a>
+    {% endif %}
 
     {% for pos in post %}
         <div id="post_container">
@@ -62,5 +55,3 @@
     {% endif %}
 
 {% endblock %}
-
-<script src="../static/profile.js"></script>

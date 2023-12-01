@@ -6,7 +6,7 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="shortcut icon" href="../robot.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ url_for('static', filename='robot.png') }}">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -73,7 +73,7 @@
     </div>
     
 </body>
-    <script src="../static/index.js"></script>
-    <script src="../static/post.js"></script>
-    <script src="../static/profile.js"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='post.js') }}"></script>
+    <script src="{{ url_for('static', filename='profile.js') }}"></script>
 </html>

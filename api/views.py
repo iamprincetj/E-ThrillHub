@@ -114,3 +114,37 @@ def makepost():
     print(title, link, image.filename, image.name, image.headers, image.mimetype, user.username)
     flash('Post Created!', category='success')
     return redirect(url_for('views.news'))
+
+
+@views.route('/profile/<username>/Edit_Profile', methods=['GET', 'POST'])
+def edit_profile(username):
+    if request.method == "POST":
+        user = current_user
+        print(request.form)
+        new_username = request.form.get('change_username')
+        new_email = request.form.get('change_email')
+        new_profile_pic = request.files.get('change_profile_pic')
+
+        user_email = User.objects(email=new_email).first()
+        user_username = User.objects(username=new_username).first()
+
+        if user_email and new_email != user.email:
+            flash('A user with that email already exists, try again', category='error')
+        elif user_username and new_username != user.username:
+            flash('A user with that username already exists, try again', category='error')
+        else:
+            if new_email != user.email:
+                user.update(email=new_email)
+                flash('Email updated successfully')
+            if new_username != user.username:
+                user.update(username=new_username)
+                flash('Username updated successfully')
+            if new_profile_pic:
+                if user.changed_profile_pic.read():
+                    user.changed_profile_pic.delete()
+                user.changed_profile_pic.put(new_profile_pic)
+                user.save()
+                flash('Profile picture successfully updated')
+        return redirect(url_for("views.edit_profile", username=user.username))
+
+    return render_template('edit.html', user=current_user)

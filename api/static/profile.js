@@ -5,7 +5,6 @@ let getProfilePic = () => {
 
     getProfilePic.forEach((val) => {
         val.addEventListener("click", () => {
-            console.log(getProfilePicModal);
             var profilePic = document.createElement("img");
             profilePic.className = 'profile-pic-img';
             profilePic.src = val.src;
@@ -19,7 +18,6 @@ let getProfilePic = () => {
     window.onclick = function (event) {
         if (event.target == getProfilePicModal) {
             getProfilePicModal.style.display = "none";
-            check = false;
         }
     }
 

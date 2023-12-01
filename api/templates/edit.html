@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} JustIn | Edit {{ user.username }} {% endblock %}
+
+
+
+{% block content %}
+    {% if user.changed_profile_pic %}
+        <div id="profile-div">
+            <img src="/image/{{ user.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp"> {{ user.username }}
+        </div>
+    {% else %}
+        <div id="profile-div">
+            <img src="{{ user.profile_pic }}" alt="" id="pro_pic" class="pp"> {{ user.username }}
+        </div>
+    {% endif %}
+
+    <div class="pro_pic_modal">
+        <span class="close profile-pic-close">&times;</span>
+    </div>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        <label for="change_username">Edit username</label>
+        <input type="text" name="change_username" id="change_username" value="{{ user.username }}">
+        <label for="change_email">Edit Email</label>
+        <input type="email" name="change_email" id="change_email" value="{{ user.email }}">
+        <label for="change_profile_pic">Edit Profile Picture</label>
+        <input type="file" name="change_profile_pic" id="change_profile_pic">
+        <button type="submit">SUBMIT</button>
+    </form>
+{% endblock %}
