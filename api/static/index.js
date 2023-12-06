@@ -70,3 +70,9 @@ setInterval(function() {
     });
     // END: ed8c6549bwf9;
 }, 1000);
+
+
+window.onload = function() {
+    // This code will run after the entire page is loaded
+    alert("Page has finished loading!");
+};
