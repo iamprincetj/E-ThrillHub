@@ -23,7 +23,6 @@ getLikeLink.forEach((val) => {
 });*/
 
 let likeButtons = document.querySelectorAll("#post_container .like_post");
-console.log(likeButtons)
 likeButtons.forEach((likeButton) => {
     likeButton.addEventListener("click", () => {
         let postId = likeButton.id;
@@ -45,3 +44,29 @@ likeButtons.forEach((likeButton) => {
         });
     });
 });
+
+
+setInterval(function() {
+    var timestamps = document.querySelectorAll('.timestamp');
+    timestamps.forEach(function(timestamp) {
+        var postTime = new Date(timestamp.dataset.timestamp + 'Z');
+        var now = new Date();
+        var diffInSeconds = Math.floor((now - postTime) / 1000);
+        var diffInMinutes = Math.floor(diffInSeconds / 60);
+        var diffInHours = Math.floor(diffInMinutes / 60);
+        var diffInDays = Math.floor(diffInHours / 24);
+        
+        if (diffInDays > 0) {
+            timestamp.textContent = diffInDays + ' days ago';
+        } else if (diffInHours > 0) {
+            timestamp.textContent = diffInHours + ' hours ago';
+        } else if (diffInMinutes > 0) {
+            timestamp.textContent = diffInMinutes + ' minutes ago';
+        } else if (diffInSeconds > 0) {
+            timestamp.textContent = diffInSeconds + ' seconds ago';
+        } else {
+            timestamp.textContent = 'Just now';
+        }
+    });
+    // END: ed8c6549bwf9;
+}, 1000);

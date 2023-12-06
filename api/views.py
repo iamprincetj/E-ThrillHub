@@ -26,11 +26,9 @@ def news():
     page = request.args.get('page', default=1, type=int)
     posts_per_page = 5
     offset = (page - 1) * posts_per_page
-    posts = Post.objects().skip(offset).limit(posts_per_page)
+    posts = Post.objects().skip(offset).limit(posts_per_page).order_by('-timestamp')
     post_len = len(Post.objects())
-    for post in posts:
-        print(post.title)
-    return render_template('news.html', user=current_user, post=posts, page=page, post_len=post_len)
+    return render_template('news.html', user=current_user, post=posts, page=page, post_len=post_len, posts_per_page=posts_per_page)
 
 @views.route('/post', methods=['GET', 'POST'])
 @login_required

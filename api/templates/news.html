@@ -4,18 +4,23 @@
 
 {% block content %}
     {% for pos in post %}
-        <div id="post_container" class="post_container_class">
+        <div id="post_container">
             {% if pos.author.changed_profile_pic %}
+            <a href="/profile/{{ pos.author.username }}" title="{{ pos.author.username }}">
                 <div id="profile-div">
                     <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">
                 </div>
+            </a>
             {% else %}
-                <div id="profile-div">
-                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic" class="pp">
-                </div>
+                <a href="/profile/{{ pos.author.username }}" title="{{ pos.author.username }}">
+                    <div id="profile-div">
+                        <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic" class="pp">
+                    </div>
+                </a>
             {% endif %}
             <div id="post_header">
                 <a id="post_username" href="/profile/{{ pos.author.username }}"> {{ pos.author.username }} </a>
+                <p class="timestamp" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
                 <p class="title"> {{ pos.title }} </p>
                 {% if pos.link_url %}
                     <a href="{{ pos.link_url }}">{{ pos.link_url }}</a>
@@ -45,15 +50,11 @@
             </ul>
         </div>
     {% endfor %}
-    <div class="pro_pic_modal">
-        <span class="close profile-pic-close">&times;</span>
-    </div>
-    {% if page < post_len %}
-        <a href="/news?page={{ page + 1 }}">load more</a>
+    {% if page * posts_per_page < post_len %}
+        <a href="{{ url_for('views.news', page=page + 1) }}">Next</a>
     {% endif %}
-
     {% if page > 1 %}
-        <a href="/news?page={{ page - 1 }}">Previous page</a>
+        <a href="{{ url_for('views.news', page=page - 1) }}">Previous</a>
     {% endif %}
 
 {% endblock %}

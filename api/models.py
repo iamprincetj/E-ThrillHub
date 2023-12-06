@@ -1,6 +1,7 @@
 from mongoengine import *
 from flask_login import UserMixin
 import certifi
+from datetime import datetime
 
 import os
 from dotenv import load_dotenv
@@ -42,6 +43,7 @@ class Post(Document):
     tags = ListField(StringField(max_length=30))
     comments = ListField(EmbeddedDocumentField(Comments))
     likes = ListField(ReferenceField(User))
+    timestamp = DateTimeField(default=datetime.utcnow)
 
 class ImagePost(Document):
     image_path = FileField()
