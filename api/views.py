@@ -1,9 +1,9 @@
 from hashlib import md5
 from io import BytesIO
 import ssl
-from flask import Blueprint, render_template, redirect, request, flash, send_file, url_for, Response
+from flask import Blueprint, jsonify, render_template, redirect, request, flash, send_file, url_for, Response, session, abort
 from flask_login import current_user, login_required
-from api.models import Post, User, db, ImagePost
+from api.models import Post, User, db, ImagePost, Comments
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from gridfs import GridFS
@@ -68,34 +68,38 @@ def serve_image(id):
 
 @views.route('/profile/<username>', methods=['GET', 'POST'])
 def profile(username):
-    if request.method == "POST":
-        
-        new_username = request.form.get("change_username")
-        new_profile_pic = request.files['change_profile_pic']
-        if new_profile_pic:
-            user = User.objects(username=username).first()
-            if user.changed_profile_pic.read():
-                user.changed_profile_pic.delete()
-            user.changed_profile_pic.put(new_profile_pic)
-            user.save()
-            flash('Profile picture changed', category='success')
-            return redirect(f'/profile/{username}')
-        if new_username:
-            exist_user = User.objects(username=new_username).first()
-            if exist_user:
-                flash('Username already taken, Try another', category='error')
-            else:
-                User.objects(username=username).update(username=new_username)
-                flash('Username successfully changed', category='success')
-                return redirect(f'/profile/{new_username}')
-
     user = User.objects(username=username).first()
-    page = request.args.get('page', default=1, type=int)
-    posts_per_page = 1
-    offset = (page - 1) * posts_per_page
-    post = Post.objects(author=user).skip(offset).limit(posts_per_page)
-    post_len = len(Post.objects(author=user))
-    return render_template('profile.html', user=current_user, post=post, page=page, post_len=post_len, searched_user=user)
+    if user:
+        if request.method == "POST":
+            new_username = request.form.get("change_username")
+            new_profile_pic = request.files['change_profile_pic']
+            if new_profile_pic:
+                user = User.objects(username=username).first()
+                if user.changed_profile_pic.read():
+                    user.changed_profile_pic.delete()
+                user.changed_profile_pic.put(new_profile_pic)
+                user.save()
+                flash('Profile picture changed', category='success')
+                return redirect(f'/profile/{username}')
+            if new_username:
+                exist_user = User.objects(username=new_username).first()
+                if exist_user:
+                    flash('Username already taken, Try another', category='error')
+                else:
+                    User.objects(username=username).update(username=new_username)
+                    flash('Username successfully changed', category='success')
+                    return redirect(f'/profile/{new_username}')
+
+        user = User.objects(username=username).first()
+        page = request.args.get('page', default=1, type=int)
+        posts_per_page = 5
+        offset = (page - 1) * posts_per_page
+        post = Post.objects(author=user).skip(offset).limit(posts_per_page)
+        post_len = len(Post.objects(author=user))
+        return render_template('profile.html', user=current_user, post=post, page=page, post_len=post_len, searched_user=user)
+    
+    else:
+        abort(404)
 
 @views.route('/makepost', methods=['POST'])
 def makepost():
@@ -148,3 +152,44 @@ def edit_profile(username):
         return redirect(url_for("views.edit_profile", username=user.username))
 
     return render_template('edit.html', user=current_user)
+
+@views.route('/like/<post_id>', methods=['POST', 'GET'])
+def like_post(post_id):
+    post = Post.objects(id=post_id).first()
+    current_user_like = None
+    for liker in post.likes:
+        if liker == current_user:
+            current_user_like = liker
+            break
+    
+    if current_user_like:
+        post.likes.remove(current_user_like)
+        has_liked = "unliked"
+    else:
+        post.likes.append(current_user)
+        has_liked = "liked"
+    post.save()
+    return jsonify({'has_liked': has_liked})
+
+@views.route('/comment/<post_id>', methods=['POST', 'GET'])
+def comment_post(post_id):
+    post = Post.objects(id=post_id).first()
+    if request.method == "POST":
+        content = request.form.get("comments")
+        comment = Comments()
+        comment.commenter = current_user
+        comment.content = content
+        post.comments.append(comment)
+        post.save()
+        flash('Successfully dropped your comment', category='success')
+    len_likes = len(post.likes)
+    return render_template('post.html', pos=post, user=current_user, likes=len_likes)
+
+@views.route("/edit_post/<post_id>", methods=['POST'])
+def edit_post(post_id):
+    post = Post.objects(id=post_id).first()
+    newText = request.form.get("edit_post_text")
+    if newText == "":
+        flash('Please input a valid text', category='error')
+    print(newText)
+    return redirect(f'/profile/{current_user.username}')

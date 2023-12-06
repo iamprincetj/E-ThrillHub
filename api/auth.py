@@ -51,6 +51,8 @@ def signup():
             user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'), profile_pic=img)
             user.save()
             flash('Account Created')
+            login_user(user, remember=True)
+            return redirect(url_for('views.home'))
     if request.method == 'GET' and current_user.is_authenticated:
         return redirect(url_for('views.home'))
     return render_template('signup.html', user=current_user)
@@ -59,4 +61,10 @@ def signup():
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('auth.login'))
+
+@auth.route('/delete_account', methods=['GET', 'POST'])
+def delete_account():
+    User.delete(current_user)
+    flash('successfully delete your account')
     return redirect(url_for('auth.login'))

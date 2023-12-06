@@ -4,7 +4,7 @@
 
 {% block content %}
     {% for pos in post %}
-        <div id="post_container">
+        <div id="post_container" class="post_container_class">
             {% if pos.author.changed_profile_pic %}
                 <div id="profile-div">
                     <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">
@@ -26,6 +26,23 @@
                     <img src="/image/{{ pos.image_path._id }}" alt="" class="post-image">
                 {% endif %}
             </div>
+
+            <ul>
+                <li>
+                    <button class="like_post {% if user in pos.likes %}liked{% else %}unliked{% endif %}" id="{{ pos.id }}">
+                        <i class="fa fa-heart"></i>
+                    </button>
+                </li>
+                <script>
+                   /***/
+
+                </script>
+                <li>
+                    <a href="/comment/{{ pos.id }}">
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     {% endfor %}
     <div class="pro_pic_modal">

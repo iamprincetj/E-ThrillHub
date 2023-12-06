@@ -113,34 +113,35 @@ ol {
     font-size: 20px;
 }
 
-#post-div, .pro_pic_modal {
+#post-div, .pro_pic_modal, .like_modal, .del_acct_modal, .delete_post_modal, .edit_post_modal {
     display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
 
 
-#post-div .modal-content{
+#post-div .modal-content, #like_modal_content, .del_acct_modal_content, .del_post_modal_content, .edit_post_modal_content{
     background-color: rgb(255,255,255);
     background-color: rgba(255,255,255, 0.5);
-    margin: 15% auto;
+    margin: 0 auto;
     padding: 30px;
-    border: 1px solid #888;
     width: 70%;
     box-sizing: border-box;
+    overflow: auto;
+    border-radius: 10px;
 }
 
 #post-div .modal-content form {
-    border: 1px solid blue;
-    width: inherit;
-    height: 100%;
+    width: 90%;
+    height: inherit;
+    border: none;
 }
 
 #post-div .modal-content form textarea {
@@ -220,7 +221,7 @@ ol {
     border: 1px solid black;
     width: 80%;
     margin: 1rem auto;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 0.5rem;
 } 
 
@@ -233,4 +234,89 @@ ol {
 
 #post_img {
     margin-top: 1rem;
+}
+
+#post_container ul{
+    width: 100%;
+    height: 1000%;
+}
+
+#post_container ul li{
+    list-style-type: none;
+    float: left;
+    margin-left: 1rem;
+}
+
+#post_container ul li a{
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#post_container #likes {
+    cursor: pointer;
+}
+
+#post_container #likes:hover {
+    color: #9e9b9b;
+}
+
+#like_modal_content{
+    margin: 50% auto;
+}
+
+.like_post:hover {
+    color: red;
+}
+
+.liked {
+    color: red;
+    border: none;
+    outline: none;
+}
+.liked:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+.unliked {
+    color: grey;
+    border: none;
+    outline: none;
+}
+
+.unliked:hover {
+    cursor: pointer;
+    color: red;
+}
+
+
+#delete_acct {
+    text-align: center;
+    cursor: pointer;
+    height: 2rem;
+    color: white;
+    background-color: red;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    line-height: 2rem;
+}
+
+#delete_acct:hover {
+    background-color: rgba(255,0,0,0.5);
+}
+
+#submit {
+    margin: 1rem;
+}
+
+#post_menu {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    align-items:end;
+}
+
+#post_menu li {
+    padding: 0.3rem;
+    cursor: pointer;
 }

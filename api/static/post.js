@@ -60,5 +60,15 @@ let makePost = () => {
     });
 }
 
+let getPostLikes = () => {
+    let getLikelink = document.querySelector("#post_container #likes");
+    let getModal = document.querySelector(".like_modal");
+
+    getLikelink.addEventListener("click", () => {
+        getModal.style.display = "block";
+    });
+}
+
 getPost();
 makePost();
+getPostLikes();

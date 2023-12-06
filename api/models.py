@@ -21,10 +21,6 @@ db = con.JustIN_project
 #db = con.tumblelog
 
 
-class Comments(EmbeddedDocument):
-    content = StringField()
-    name = StringField(max_length=120)
-
 
 class User(Document, UserMixin):
     email = StringField(required=True)
@@ -33,6 +29,11 @@ class User(Document, UserMixin):
     profile_pic = StringField()
     changed_profile_pic = FileField()
 
+class Comments(EmbeddedDocument):
+    content = StringField()
+    commenter = ReferenceField(User)
+
+
 class Post(Document):
     title = StringField(max_length=120, required=True)
     author = ReferenceField(User, reverse_delete_rule=CASCADE)
@@ -40,8 +41,7 @@ class Post(Document):
     link_url = StringField()
     tags = ListField(StringField(max_length=30))
     comments = ListField(EmbeddedDocumentField(Comments))
-
-    meta = {'allow_inheritance': True}
+    likes = ListField(ReferenceField(User))
 
 class ImagePost(Document):
     image_path = FileField()

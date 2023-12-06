@@ -20,6 +20,29 @@
 
     {% for pos in post %}
         <div id="post_container">
+            {% if user == pos.author %}
+            <ul id="post_menu">
+                <button class="edit_post">Edit</button>
+                <button class="delete_post">Delete</button>
+            </ul>
+            {% endif %}
+            <div class="edit_post_modal">
+                <div class="edit_post_modal_content">
+                    <form action="/edit_post/{{ pos.id }}" method="post">
+                        <label for="edit_post_text">Edit Text</label>
+                        <input type="text" name="edit_post_text" id="edit_post_text">
+                        <button type="submit">Submit</button>
+                        <button class="edit_post_cancel">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="delete_post_modal">
+                <div class="del_post_modal_content">
+                    <h3>Are You Sure You Want to Delete this Post?</h3>
+                    <button><a href="/delete_post/{{ pos.id }}">Yes</a></button>
+                    <button class="del_post_cancel">No</button>
+                </div>
+            </div>
             {% if pos.author.changed_profile_pic %}
                 <div id="profile-div">
                     <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">

@@ -49,9 +49,10 @@ def news():
     return render_template('news.html', user=current_user, post=posts)
 
 '''
+from models import User, Post, ImagePost
 
-from hashlib import md5
-email = 'tochukwunwanze5@gmail.com'
+user = User.objects(username='prince').first()
+post = Post.objects(author=user).first()
 
-img = f'https://www.gravatar.com/avatar/{md5(email.encode("utf-8")).hexdigest()}?d=identicon&s=128'
-print(img)
+for user in post.likes:
+    print(user.liker)
