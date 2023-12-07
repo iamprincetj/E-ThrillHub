@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 from api.auth import auth
 from api.views import views
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 import os
 from dotenv import load_dotenv
 from flask_mail import Mail
@@ -28,4 +28,12 @@ def create_app():
     @manager.user_loader
     def load_user(id):
         return User.objects(id=id).first()
+    
+    @app.errorhandler(404)
+    def not_found(error):
+        return render_template('404.html', user=current_user), 404
+    
+    @app.errorhandler(500)
+    def internal_error(error):
+        return render_template('500.html', user=current_user), 500
     return app

@@ -92,7 +92,7 @@ def profile(username):
         page = request.args.get('page', default=1, type=int)
         posts_per_page = 5
         offset = (page - 1) * posts_per_page
-        post = Post.objects(author=user).skip(offset).limit(posts_per_page)
+        post = Post.objects(author=user).skip(offset).limit(posts_per_page).order_by('-timestamp')
         post_len = len(Post.objects(author=user))
         return render_template('profile.html', user=current_user, post=post, page=page, post_len=post_len, searched_user=user)
     

@@ -16,6 +16,7 @@
         {% endif %}
         <div id="post_header">
             <a id="post_username" href="/profile/{{ pos.author.username }}"> {{ pos.author.username }} </a>
+            <p class="timestamp" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
             <p class="title"> {{ pos.title }} </p>
             {% if pos.link_url %}
                 <a href="{{ pos.link_url }}">{{ pos.link_url }}</a>
