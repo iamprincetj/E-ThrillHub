@@ -93,8 +93,8 @@ likeButtons.forEach((likeButton) => {
     });
 });
 
-let likeButtonsComment = document.querySelectorAll(".comment_contents .like_comment");
-likeButtons.forEach((likeButton) => {
+/**let likeButtonsComment = document.querySelectorAll(".comment_contents .like_comment");
+likeButtonsComment.forEach((likeButton) => {
     likeButton.addEventListener("click", () => {
         let postId = likeButton.id;
         let url = '/like/' + postId;
@@ -114,7 +114,7 @@ likeButtons.forEach((likeButton) => {
             }
         });
     });
-});
+});*/
 
 getPost();
 makePost();
