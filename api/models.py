@@ -38,7 +38,7 @@ class Comments(EmbeddedDocument):
 
 
 class Post(Document):
-    title = StringField(max_length=120, required=True)
+    title = StringField(max_length=1000, required=True)
     author = ReferenceField(User, reverse_delete_rule=CASCADE)
     image_path = FileField()
     link_url = StringField()
