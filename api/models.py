@@ -33,6 +33,8 @@ class User(Document, UserMixin):
 class Comments(EmbeddedDocument):
     content = StringField()
     commenter = ReferenceField(User)
+    likes = ListField(ReferenceField(User))
+    timestamp = DateTimeField(default=datetime.utcnow)
 
 
 class Post(Document):

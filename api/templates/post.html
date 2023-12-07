@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} E-ThrillHub | Make a Post {% endblock %}
+{% block title %} E-ThrillHub | Post . {{ pos.author.username }} - {{ pos.title }} {% endblock %}
 
 {% block content %}
 
@@ -45,7 +45,7 @@
 
     <form action="/comment/{{ pos.id }}" method="POST">
         <label for="comments" style="margin-bottom: 1rem;">Comment</label>
-        <textarea name="comments" id="comments" cols="30" rows="10">hello</textarea>
+        <textarea name="comments" id="comments" cols="30" rows="10" placeholder="Enter Comment"></textarea>
         <button type="submit" style="margin-top: 1rem;">Comment</button>
     </form>
 
@@ -60,6 +60,13 @@
                     <p class="comment_content">
                         {{ comment.content }}
                     </p>
+                    <ul>
+                        <li>
+                            <button class="like_comment {% if user in pos.likes %}liked{% else %}unliked{% endif %}" id="{{ pos.id }}">
+                                <i class="fa fa-thumbs-up"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             {% endfor %}
         {% endif %}

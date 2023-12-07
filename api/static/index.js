@@ -22,29 +22,6 @@ getLikeLink.forEach((val) => {
     });
 });*/
 
-let likeButtons = document.querySelectorAll("#post_container .like_post");
-likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener("click", () => {
-        let postId = likeButton.id;
-        let url = '/like/' + postId;
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => res.json())
-        .catch((error) => console.error(error))
-        .then(data => {
-            if (data.has_liked == "liked") {
-                likeButton.style.color = "red";
-            } else {
-                likeButton.style.color = "grey";
-            }
-        });
-    });
-});
-
 
 setInterval(function() {
     var timestamps = document.querySelectorAll('.timestamp');
@@ -70,3 +47,9 @@ setInterval(function() {
     });
     // END: ed8c6549bwf9;
 }, 1000);
+
+
+window.onload = () => {
+    let getLoadDiv = document.querySelector("#loading_modal");
+    getLoadDiv.style.display = "none";
+};
