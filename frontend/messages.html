@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>E-THRILLHUB</title>
+  <meta name="title" content="">
+  
+
+  <link rel="shortcut icon" href="./assets/images/E-THRILL.png" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
+  <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+  <style>
+    /* Basic CSS styling for the received messages page */
+
+
+.messages-section {
+margin: 20px auto;
+max-width: 800px;
+padding: 20px;
+background-color: aqua;
+border-radius: 5px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-list {
+/* Add styling for message list */
+}
+
+.message {
+border: 1px solid #007bff;
+margin-bottom: 15px;
+padding: 10px;
+border-radius: 5px;
+}
+
+.message-header {
+display: flex;
+justify-content: space-between;
+margin-bottom: 5px;
+}
+
+.message-body {
+/* Add styles for message body */
+}
+
+.h2, h2 {
+    font-size: calc(1.325rem + .9vw);
+    color: rgb(84, 80, 80);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: rgb(84, 80, 80);
+}
+
+.reply-btn {
+padding: 5px 10px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.reply-btn:hover {
+background-color: #0056b3;
+}
+
+</style>
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="index.html#home" class="navbar-link hover-1" data-nav-toggler>News</a>
+          </li>
+
+          <li>
+            <a href="profile.html" class="navbar-link hover-1" data-nav-toggler>Profile</a>
+          </li>
+
+          <li>
+            <a href="index.html#featured" class="navbar-link hover-1" data-nav-toggler>Posts</a>
+          </li>
+
+          <li>
+            <a href="index.html#home" class="navbar-link hover-1" data-nav-toggler>Recent Post</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+          </li>
+          <div class="right">
+
+
+            <li>
+            <img src="./assets/images/author-1.png">
+          </li>
+  
+        </div>
+
+        
+
+        </ul>
+
+       
+
+        <div class="navbar-bottom">
+
+          <div class="profile-card">
+            <!---<img src="./assets/images/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">-->
+
+            <div>
+              <p class="card-title">Hello Mike !</p>
+
+              <p class="card-subtitle">
+                You have 3 new messages
+              </p>
+            </div>
+          </div>
+
+          <ul class="link-list">
+
+            <li>
+              <a href="profile.html" class="navbar-bottom-link hover-1">Profile</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Posts Saved</a>
+            </li>
+
+            <li>
+              <a href="post.html" class="navbar-bottom-link hover-1">Add New Post</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
+
+            </li>
+            
+         
+
+          </ul>
+
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © E-Thrillhub
+          Developed by Justin Nwanze & Ndefo Afam
+        </p>
+
+        
+
+      </nav>
+
+      <a href="post.html" class="btn btn-primary" style="margin-right: -3rem;">New Post</a>
+
+      <a href="#" class="btn btn-primary">Sign Out</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+    <section>
+        <div class="container">
+          <div class="hero-banner" style="margin-top: 12rem;">
+
+           
+
+           
+          </div>
+
+          <img src="./assets/images/shadow-1.svg" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="./assets/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+        <div style="margin-top:4rem" >
+            <h2 class="headline headline-2 section-title">
+                <span class="span">Messages</span>
+              </h2>  
+        <p>View and Reply to Messages</p>
+        </div>
+    </div>
+      </section>
+
+
+
+
+
+
+
+
+      <!-- 
+        - # Messages
+      -->
+      <main>
+        <section class="messages-section">
+          <h2>Received Messages</h2>
+          <div class="message-list">
+            <!-- Messages will be dynamically loaded here -->
+            <!-- Example message structure: -->
+       
+            <div class="message">
+              <div class="message-header">
+                <p>From: Username</p>
+                <p>Sent: Date & Time</p>
+              </div>
+              <div class="message-body">
+                <p>Message content goes here...</p>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+      </main>
+    
+  
+        
+              
+               
+
+    
+
+
+  
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+  <script>
+    // Get the love button element
+    var loveButton = document.querySelector(".love-button");
+
+    // Add a click event listener to the love button
+    loveButton.addEventListener("click", function() {
+      // Toggle the liked class on the love button
+      loveButton.classList.toggle("liked");
+      // Change the color of the heart icon to red
+      var heartIcon = document.querySelector(".bi bi-heart");
+      heartIcon.classList.add("bi bi-heart-filled");
+      // Change the color of the text to white
+      var text = document.querySelector(".bi bi-heart");
+      text.classList.remove("bi bi-heart-filled");
+      text.classList.add("bi bi-heart-empty");
+      // Change the color of the background to red
+      var body = document.body;
+      body.classList.remove("bg-lightblue");
+      body.classList.add("bg-red");
+    });
+  </script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
