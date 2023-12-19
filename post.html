@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>E-THRILLHUB</title>
+  <meta name="title" content="">
+  
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/E-THRILL.png" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
+  <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+  <style>
+    #post-div .modal-content form {
+        width: 90%;
+        height: inherit;
+        border: none;
+    }
+    #post-div .modal-content form textarea {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        padding: 5px;
+        border-radius: 5px;
+        resize: none;
+        box-sizing: border-box;
+    }
+    form {
+        border: 1px solid #1493DF;
+        border-radius: 5px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 5em auto;
+        padding: 1rem;
+    }
+    form input {
+        margin: 0.5rem;
+        border: none;
+        height: 30px;
+        border: 1px solid #1493DF;
+        outline: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    textarea {
+        font-family: monospace;
+        text-rendering: auto;
+        color: fieldtext;
+        letter-spacing: normal;
+        word-spacing: normal;
+        line-height: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: auto;
+        -webkit-rtl-ordering: logical;
+        resize: auto;
+        cursor: text;
+        overflow-wrap: break-word;
+        background-color: field;
+        column-count: initial !important;
+        writing-mode: horizontal-tb !important;
+        margin: 0em;
+        border-width: 1px;
+        border-style: solid;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-image: initial;
+        padding: 2px;
+        white-space: pre-wrap;
+    }
+
+    form button {
+        width: 25%;
+        align-self: center;
+        background-color: #1493DF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px;
+    }
+    input[type="file" i] {
+        appearance: none;
+        background-color: initial;
+        cursor: default;
+        align-items: baseline;
+        color: inherit;
+        text-overflow: ellipsis;
+        text-align: start !important;
+        padding: initial;
+        border: initial;
+        white-space: pre;
+        overflow: hidden !important;
+    }
+    @media screen and (max-width: 768px) {
+        form {
+            border: 1px solid #1493DF;
+            border-radius: 5px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin: 5em auto;
+            padding: 1rem;
+        }
+    
+        form input {
+          margin: 0.5rem;
+          border: none;
+          height: 30px;
+          border: 1px solid lightblue;
+          outline: none;
+          padding: 5px;
+          border-radius: 5px;
+          margin-left: -2px;
+      }
+    
+        textarea {
+            font-family: monospace;
+            text-rendering: auto;
+            color: fieldtext;
+            letter-spacing: normal;
+            word-spacing: normal;
+            line-height: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            appearance: auto;
+            -webkit-rtl-ordering: logical;
+            resize: auto;
+            cursor: text;
+            overflow-wrap: break-word;
+            background-color: field;
+            column-count: initial !important;
+            writing-mode: horizontal-tb !important;
+            margin: 0em;
+            border-width: 1px;
+            border-style: solid;
+            border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+            border-image: initial;
+            padding: 2px;
+            white-space: pre-wrap;
+        }
+    
+        form button {
+            width: 25%;
+            align-self: center;
+            background-color: #1493DF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+    
+        input[type="file" i] {
+            appearance: none;
+            background-color: initial;
+            cursor: default;
+            align-items: baseline;
+            color: inherit;
+            text-overflow: ellipsis;
+            text-align: start !important;
+            padding: initial;
+            border: initial;
+            white-space: pre;
+            overflow: hidden !important;
+        }
+
+    }
+    /* Media query for smaller screens */
+@media screen and (max-width: 480px) {
+    form {
+        width: 80%;
+        margin: 3em auto;
+    }
+
+    form input {
+        height: 25px;
+    }
+
+    form button {
+        width: 50%;
+    }
+}
+    
+  </style>
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="index.html#home" class="navbar-link hover-1" data-nav-toggler>News</a>
+          </li>
+
+          <li>
+            <a href="#topics" class="navbar-link hover-1" data-nav-toggler>Profile</a>
+          </li>
+
+          <li>
+            <a href="index.html#featured" class="navbar-link hover-1" data-nav-toggler>Posts</a>
+          </li>
+
+          <li>
+            <a href="#recent" class="navbar-link hover-1" data-nav-toggler>Recent Post</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+          </li>
+          <div class="right">
+
+            <li>
+            <img src="./assets/images/author-1.png">
+          </li>
+  
+        </div>
+
+        </ul>
+
+       
+
+        <div class="navbar-bottom">
+
+          <div class="profile-card">
+            <!---<img src="./assets/images/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">-->
+
+            <div>
+              <p class="card-title">Hello Mike !</p>
+
+              <p class="card-subtitle">
+                You have 3 new messages
+              </p>
+            </div>
+          </div>
+
+          <ul class="link-list">
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Profile</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Posts Saved</a>
+            </li>
+
+            <li>
+              <a href="post.html" class="navbar-bottom-link hover-1">Add New Post</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
+
+            </li>
+            
+         
+
+          </ul>
+
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © E-Thrillhub
+          Developed by Justin Nwanze & Ndefo Afam
+        </p>
+
+        
+
+      </nav>
+
+      <a href="#" class="btn btn-primary" style="margin-right: -3rem;">New Post</a>
+
+      <a href="#" class="btn btn-primary">Sign Out</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+  <form action="/makepost" method="POST" enctype="multipart/form-data" style="margin-top: 14rem;">
+    <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?" required="true"></textarea>
+    <label for="linkpost" id="label-link">
+        <i class="fa fa-link" aria-hidden="true"></i>
+    </label>
+    <input type="url" name="linkpost" id="linkpost" style="margin-left: -0.5px">
+    <label for="imagepost" id="label-image">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>
+    </label>
+    <input type="file" name="imagepost" id="imagepost" >
+    <label for="tags" id="label-tags">
+        <i class="fa fa-tag" aria-hidden="true"></i>
+    </label>
+    <input type="text" name="tags" id="tags" style="margin-left: -0.5px">
+    <div id="show-img">
+        <span class="close img-close"></span>
+    </div>
+    <button type="submit" style="margin-top: 7px;">Post</button>
+</form>
+
+  
+  <script  src="./script.js"></script>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ 
+</body>
+
+</html>

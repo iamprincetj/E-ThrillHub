@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-THRILLHUB</title>
+    <link rel="shortcut icon" href="./assets/images/E-THRILL.png" type="image/svg+xml">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+        <style>
+        * {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        :root {
+          --btn-size: 2rem;
+          --small-size: .75rem;
+              /**
+   * COLORS
+   */
+
+  /** Background colors */
+  --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+  --bg-carolina-blue: hsla(199, 89%, 49%, 1);
+  --bg-prussian-blue: hsla(216, 33%, 20%, 1);
+  --bg-oxford-blue: hsla(222, 44%, 13%, 1);
+  --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+
+  /** Text colors */
+  --text-white: hsla(0, 0%, 100%, 1);
+  --text-alice-blue: hsla(216, 100%, 95%, 1);
+  --text-columbia-blue: hsla(199, 69%, 84%, 1);
+  --text-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+  --text-carolina-blue: hsla(199, 89%, 49%, 1);
+  --text-shadow-blue: hsla(217, 24%, 59%, 1);
+  --text-slate-gray: hsla(217, 17%, 48%, 1);
+
+  /** Gradient colors */
+  --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
+  --gradient-2: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
+  --gradient-3: linear-gradient(0deg, #000d1a, transparent);
+
+  /** Border colors */
+  --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
+  --border-prussian-blue: hsla(216, 33%, 20%, 1);
+  --border-white: hsl(0, 0%, 100%);
+  --border-white-alpha-15: hsla(0, 0%, 100%, 0.15);
+
+  /** Default colors */
+  --white: hsl(0, 0%, 100%, 1);
+  --black: hsl(0, 0%, 0%, 1);
+
+  /**
+   * TYPOGRAPHY
+   */
+
+  /** Font family */
+  --fontFamily-noto_sans: 'Noto Sans', sans-serif;
+
+  /** Font size */
+  --fontSize-1: 2.9rem;
+  --fontSize-2: 2.0rem;
+  --fontSize-3: 1.8rem;
+  --fontSize-4: 1.6rem;
+  --fontSize-5: 1.5rem;
+  --fontSize-6: 1.4rem;
+  --fontSize-7: 1.2rem;
+  --fontSize-8: 1.3rem;
+
+  /** Font weight */
+  --weight-medium: 500;
+  --weight-semiBold: 600;
+  --weight-bold: 700;
+  --weight-extraBold: 800;
+
+  /** Line height */
+  --lineHeight-1: 1.3;
+  --lineHeight-2: 1.5;
+  --lineHeight-4: 1.5;
+
+  /**
+   * BOX SHADOW
+   */
+
+  --shadow-1: 0 8px 20px 0 hsla(0, 0%, 0%, 0.05);
+  --shadow-2: 0px 3px 20px hsla(180, 90%, 43%, 0.2);
+
+  /**
+   * BORDER RADIUS
+   */
+
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-16: 16px;
+  --radius-48: 48px;
+  --radius-circle: 50%;
+  --radius-pill: 200px;
+
+  /**
+   * SPACING
+   */
+
+  --section-padding: 70px;
+
+  /**
+   * TRANSITION
+   */
+
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease;
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+  --cubic-out: cubic-bezier(0.05, 0.83, 0.52, 0.97);
+
+        }
+
+        body {
+            background-color: var(--bg-oxford-blue-2);
+  color: var(--text-shadow-blue);
+  font-family: var(--fontFamily-noto_sans);
+  font-size: 1.6rem;
+  line-height: var(--lineHeight-4);
+  overflow-y: overlay;
+        }
+
+        .bg {
+            background-color: var(--bg-oxford-blue-2);
+        }
+
+        .login-card p {
+          /* color: #b0b4b6; */
+          color: #313131;
+          font-size: var(--fontSize-7);
+      
+      }
+
+      form {
+          border: 1px solid black;
+          border-radius: 5px;
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          margin: 5em auto;
+          padding: 1rem;
+      }
+
+      .form-control:focus {
+          outline: none;
+          box-shadow: none;
+          border: var(--bs-border-width) solid var(--bs-border-color);
+      }
+
+      .login-card label {
+          font-size: var(--fontSize-4);
+      }
+
+      form.form input {
+          font-size: var(--fontSize-3);
+      }
+
+      form.form input::placeholder {
+          font-size: var(--fontSize-6);
+      }
+
+      form.form button:nth-of-type(1) {
+          color: #fff;
+          background-color:var(--bg-oxford-blue-2);
+          font-size: var(--btn-size);
+      }
+
+      form.form button:nth-last-child(1) {
+          color: #111727;
+          border: 1px solid #111727;
+          font-size: var(--fontSize-5);
+      }
+
+      form.form button:nth-last-child(2) {
+          color: #111727;
+          border: 1px solid #111727;
+          font-size: var(--btn-size);
+      }
+
+      .checkbox label {
+          font-size: var(--small-size);
+      }
+
+      .checkbox a {
+          font-size: var(--small-size);
+          color: #111727;
+      }
+
+      .signup {
+          font-size: var(--small-size);
+      }
+
+      .signup a {
+          color: #111727;
+      }
+
+      @media (max-width: 480px) {
+          .login-card {
+              width: calc(100% - 2rem);
+          }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link hover-1" data-nav-toggler>News</a>
+          </li>
+
+          <li>
+            <a href="#topics" class="navbar-link hover-1" data-nav-toggler>Profile</a>
+          </li>
+
+          <li>
+            <a href="#featured" class="navbar-link hover-1" data-nav-toggler>Posts</a>
+          </li>
+
+          <li>
+            <a href="#recent" class="navbar-link hover-1" data-nav-toggler>Recent Post</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+          </li>
+          <div class="right">
+
+            <li>
+            <img src="./assets/images/author-1.png">
+          </li>
+  
+        </div>
+
+        </ul>
+
+       
+
+        <div class="navbar-bottom">
+
+          <div class="profile-card">
+            <!---<img src="./assets/images/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">-->
+
+            <div>
+              <p class="card-title">Hello Mike !</p>
+
+              <p class="card-subtitle">
+                You have 3 new messages
+              </p>
+            </div>
+          </div>
+
+          <ul class="link-list">
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Profile</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Posts Saved</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Add New Post</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
+
+            </li>
+            
+         
+
+          </ul>
+
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © E-Thrillhub
+          Developed by Justin Nwanze & Ndefo Afam
+        </p>
+
+        
+
+      </nav>
+
+    
+
+      <a href="log.html" class="btn btn-primary" style="margin-bottom:1rem;">Sign in</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+    <div class="container py-5 px-5 bg" style="margin-top:8rem;">
+        <div class="row justify-content-between bg-white rounded-start-4">
+            <div class="col-lg-7 d-flex justify-content-center align-items-center">
+                <div class="login-card py-lg-0 py-5">
+                    <h2 class="fw-semibold">Welcome to <br>E-THRILLHUB</h2>
+                    <p class="fw-light">Welcome! Please Sign Up</p>
+                    <form action="#" class="form">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="" class="mb-1 fw-medium">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter Email">
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="mb-1 fw-medium">Password</label>
+                                <input type="password" class="form-control" placeholder="Enter Password">
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="mb-1 fw-medium">Re-enter Password</label>
+                                <input type="password" class="form-control" placeholder="Enter Password">
+                            </div>
+                            <div class="col-12 d-flex justify-content-between mt-3 checkbox">
+                                <div class="d-flex">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label for="" class="fw-medium ms-2">Remember password</label>
+                                </div>
+                                
+                            </div>
+                        </div>
+                     <button type="submit" class="btn mt-4 w-100">Sign up</button>
+                           <!---<button type="submit" class="btn mt-4 w-100 d-flex justify-content-center align-items-center">
+                            <i class="bi bi-apple me-2 fs-5"></i>
+                            <span>Sign Up With Apple</span>
+                        </button>
+                        <button type="submit" class="btn mt-4 w-100 d-flex justify-content-center align-items-center">
+                            <img src="https://th.bing.com/th/id/R.677d0a76c3ac4d273a0e5eaf4390b9b9?rik=Q6NZvyd3Q5l68A&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f06%2fgoogles_new_logo.png&ehk=U8tqNPcgWTxUbSquth5DmjOci1GN8mci21H7FfSPTm0%3d&risl=&pid=ImgRaw&r=0" alt="Google Logo" height="25">
+                            <span>Sign Up With Google</span>
+                        </button>-->
+                    </form>
+                    <p class="text-center signup mt-4">Already have an account? <a href="log.html"
+                      class="text-decoration-none fw-semibold">Sign in now</a></p>
+                </div>
+            </div>
+            <div class="col-lg-5 col-12 p-0">
+                <img src="./assets/images/ethril.png"
+                    alt="" class="img-fluid w-100">
+            </div>
+        </div>
+    </div>
+</body>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+    <script  src="./script.js"></script>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ 
+
+</html>

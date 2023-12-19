@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>E-THRILLHUB</title>
+  <meta name="title" content="">
+  
+
+  <link rel="shortcut icon" href="./assets/images/E-THRILL.png" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
+  <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/E-THRILL.png" width="219" height="50" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="index.html#home" class="navbar-link hover-1" data-nav-toggler>News</a>
+          </li>
+
+          <li>
+            <a href="profile.html" class="navbar-link hover-1" data-nav-toggler>Profile</a>
+          </li>
+
+          <li>
+            <a href="index.html#featured" class="navbar-link hover-1" data-nav-toggler>Posts</a>
+          </li>
+
+          <li>
+            <a href="index.html#home" class="navbar-link hover-1" data-nav-toggler>Recent Post</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+          </li>
+          <div class="right">
+
+            <li>
+            <img src="./assets/images/author-1.png">
+          </li>
+  
+        </div>
+
+        </ul>
+
+       
+
+        <div class="navbar-bottom">
+
+          <div class="profile-card">
+            <!---<img src="./assets/images/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">-->
+
+            <div>
+              <p class="card-title">Hello Mike !</p>
+
+              <p class="card-subtitle">
+                You have 3 new messages
+              </p>
+            </div>
+          </div>
+
+          <ul class="link-list">
+
+            <li>
+              <a href="profile.html" class="navbar-bottom-link hover-1">Profile</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Posts Saved</a>
+            </li>
+
+            <li>
+              <a href="post.html" class="navbar-bottom-link hover-1">Add New Post</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
+
+            </li>
+            
+         
+
+          </ul>
+
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © E-Thrillhub
+          Developed by Justin Nwanze & Ndefo Afam
+        </p>
+
+        
+
+      </nav>
+
+      <a href="post.html" class="btn btn-primary" style="margin-right: -3rem;">New Post</a>
+
+      <a href="#" class="btn btn-primary">Sign Out</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" aria-label="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Hello World!</p>
+
+            <h1 class="headline headline-1 section-title">
+              Welcome to <span class="span">E-Thrillhub</span>
+            </h1>
+
+            <p class="hero-text">
+              Welcome to our vibrant community where entertainment knows no bounds! Join us and share your diverse talents, moments, and creativity. Let's celebrate all forms of entertainment together!
+            </p>
+
+            <div class="input-wrapper">
+
+              <input type="email" name="email_address" placeholder="Type your email address" required
+                class="input-field" autocomplete="off">
+
+              <button class="btn btn-primary">
+                <span class="span">Subscribe</span>
+
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="hero-banner">
+
+            <img src="./assets/images/e_thrill.png" width="327" height="490" alt="Wren Clark" class="w-100">
+
+            <img src="./assets/images/pattern-2.svg" width="27" height="26" alt="shape" class="shape shape-1">
+
+            <img src="./assets/images/pattern-3.svg" width="27" height="26" alt="shape" class="shape shape-2">
+
+          </div>
+
+          <img src="./assets/images/shadow-1.svg" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="./assets/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TOPICS
+      -->
+
+     <section class="topics" id="topics" aria-labelledby="topic-label">
+  <div class="container">
+    <div class="card topic-card">
+      <div class="card-content">
+        <h2 class="headline headline-2 section-title card-title" id="topic-label">
+          Status
+        </h2>
+        <p class="card-text">
+          Don't miss out on the latest status and posts, latest movies and music posts from around the globe...
+        </p>
+        <div class="btn-group">
+          <button class="btn-icon" aria-label="previous" data-slider-prev>
+            <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+          </button>
+          <button class="btn-icon" aria-label="next" data-slider-next>
+            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="slider" data-slider>
+        <ul class="slider-list" data-slider-container>
+          <li class="slider-item">
+            <a href="#" class="slider-card">
+              <div class="status-container" style="position: relative;">
+                <img src="./assets/images/profile_1.jpg" width="507" height="618" loading="lazy" alt="Sport" class="img-cover">
+                <div class="profile-picture" style="position: absolute; top: 20px; left: 20px;">
+                  <img src="./assets/images/author.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid white;">
+                </div>
+              </div>
+              <div class="slider-content">
+                <span class="slider-title">John Deo</span>
+                <p class="slider-subtitle" style="color: antiquewhite;">Following</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="slider-item">
+            <a href="#" class="slider-card">
+              <div class="status-container" style="position: relative;">
+                <img src="./assets/images/Asset 76status.png" width="507" height="618" loading="lazy" alt="Travel" class="img-cover">
+                <div class="profile-picture" style="position: absolute; top: 20px; left: 20px;">
+                  <img src="./assets/images/author-2.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid white;">
+                </div>
+              </div>
+              <div class="slider-content">
+                <span class="slider-title">Ricky Jane</span>
+                <p class="slider-subtitle" style="color: antiquewhite;">Following</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="slider-item">
+            <a href="#" class="slider-card">
+              <div class="status-container" style="position: relative;">
+                <img src="./assets/images/Asset 79status.png" width="507" height="618" loading="lazy" alt="Design" class="img-cover">
+                <div class="profile-picture" style="position: absolute; top: 20px; left: 20px;">
+                  <img src="./assets/images/author-3.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid white;">
+                </div>
+              </div>
+              <div class="slider-content">
+                <span class="slider-title">Senuda De Silva</span>
+                <p class="slider-subtitle" style="color: antiquewhite;">Following</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="slider-item">
+            <a href="#" class="slider-card">
+              <div class="status-container" style="position: relative;">
+                <img src="./assets/images/Asset 78status.png" width="507" height="618" loading="lazy" alt="Movie" class="img-cover">
+                <div class="profile-picture" style="position: absolute; top: 20px; left: 20px;">
+                  <img src="./assets/images/author-4.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid white;">
+                </div>
+              </div>
+              <div class="slider-content">
+                <span class="slider-title">Minidu Thiranjana</span>
+                <p class="slider-subtitle" style="color: antiquewhite;">Following</p>
+              </div>
+            </a>
+          </li>
+          
+          <li class="slider-item">
+            <a href="#" class="slider-card">
+              <div class="status-container" style="position: relative;">
+                <img src="./assets/images/Asset 80status.png" width="507" height="618" loading="lazy" alt="Lifestyle" class="img-cover">
+                <div class="profile-picture" style="position: absolute; top: 20px; left: 20px;">
+                  <img src="./assets/images/author-5.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid white;">
+                </div>
+              </div>
+              <div class="slider-content">
+                <span class="slider-title">Charith Disanayaka</span>
+                <p class="slider-subtitle" style="color: antiquewhite;">Following</p>
+              </div>
+            </a>
+          </li>
+          
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - # POST
+      -->
+
+      <section class="section feature" aria-label="feature" id="featured">
+        <div class="container">
+            <h2 class="headline headline-2 section-title">
+              <span class="span">Posts</span>
+            </h2>
+          </div>
+      
+            <ul class="feature-list">
+              <li>
+                <div class="card feature-card">
+                  <div class="love-button" style="color: #1493DF;"><i class="bi bi-three-dots"></i></div>
+                  <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                    <img src="./assets/images/1099082-peaky-blinders.jpg" width="1602" height="903" loading="lazy"
+                      alt="Self-observation is the first step of inner unfolding" class="img-cover">
+                  </figure>
+      
+                  <div class="card-content">
+                    <div class="card-wrapper">
+                      <div class="card-tag">
+                        <div class="love-button"><i class="bi bi-heart"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-chat-fill"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-share-fill"></i></div>
+                        <img width="30" height="20" src="./assets/images/icons8-save-30.png">
+                      </div>
+                    </div>
+                    
+                    <h3 class="headline headline-3">
+                      <a href="selectedpost.html" class="card-title hover-2">Peaky Blinders. My favorite Epic movie. Can watch this over and over again. If you are bored on a weekend, I recommend you see this movie</a>
+                    </h3>
+      
+                    <div class="card-wrapper">
+                      <div class="profile-card">
+                        <img src="./assets/images/author-1.png" width="48" height="48" loading="lazy" alt="Joseph"
+                          class="profile-banner">
+                        <div>
+                          <p class="card-title">Joseph</p>
+                          <p class="card-subtitle">25 Nov 2023</p>
+                        </div>
+                      </div>
+                      
+            </div>
+                  </div>
+                  
+
+      
+                  <!-- Comment Section -->
+                  <div>
+                    <h2 style="color: aqua; margin-top: 1rem">Comments</h2>
+                    <!-- Form to add new comments -->
+                    <form class="comment-form">
+                      <textarea id="comment" placeholder="Write your comment here..." rows="4"></textarea>
+                      <button type="button" onclick="postComment()">Comment</button>
+                    </form>
+                    <!-- List of comments -->
+                    <ul class="comments" id="comments-list">
+                      <!-- Comments will appear here -->
+                    </ul>
+                  </div>
+                  <!-- End of Comment Section -->
+      
+                </div>
+              </li>
+            </ul>
+      </section>
+      
+
+        <section class="section feature" aria-label="feature" id="featured">
+              <ul class="feature-list">
+      <li>
+        <div class="card feature-card">
+          <div class="love-button" style="color: #1493DF;"><i class="bi bi-three-dots"></i></div>
+          <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+            <img src="./assets/images/burna.png" width="1602" height="903" loading="lazy"
+              alt="Self-observation is the first step of inner unfolding" class="img-cover">
+          </figure>
+      
+          <div class="card-content">
+      
+            <div class="card-wrapper">
+              <div class="card-tag">
+                <div class="love-button"><i class="bi bi-heart"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-chat-fill"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-share-fill"></i></div>
+                        <img width="30" height="20" src="./assets/images/icons8-save-30.png">
+                      </div>
+            </div>
+      
+            <h3 class="headline headline-3">
+              <a href="selectedpost.html" class="card-title hover-2">
+                Afro beats Music is going round like wild fire. Burna Boy shuts down O2 Arena for the 2nd time. What a star!
+              </a>
+            </h3>
+      
+            <div class="card-wrapper">
+              <div class="profile-card">
+                <img src="./assets/images/author-1.png" width="48" height="48" loading="lazy" alt="Joseph"
+                  class="profile-banner">
+                <div>
+                  <p class="card-title">Joseph</p>
+                  <p class="card-subtitle">25 Nov 2022</p>
+                </div>
+              </div>
+            
+            </div>
+      
+            <!-- Comment Section -->
+            <div>
+              <h2 style="color: aqua;">Comments</h2>
+              <!-- Form to add new comments -->
+              <form class="comment-form">
+                <textarea id="comment" placeholder="Write your comment here..." rows="4"></textarea>
+                <button type="button" onclick="postComment()">Comment</button>
+              </form>
+              <!-- List of comments -->
+              <ul class="comments" id="comments-list">
+                <!-- Comments will appear here -->
+              </ul>
+            </div>
+            <!-- End of Comment Section -->
+      
+          </div>
+       
+      
+        </div>
+      </li>
+    </section>
+
+
+
+    <section class="section feature" aria-label="feature" id="featured">
+      <ul class="feature-list">
+<li>
+<div class="card feature-card">
+  <div class="love-button" style="color: #1493DF;"><i class="bi bi-three-dots"></i></div>
+  <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+    <img src="./assets/images/adventure.jpg" width="1602" height="903" loading="lazy"
+      alt="Self-observation is the first step of inner unfolding" class="img-cover">
+  </figure>
+
+  <div class="card-content">
+
+    
+    <h3 class="headline headline-3">
+      <a href="selectedpost.html" class="card-title hover-2">
+        <a href="selectedpost.html" class="card-title hover-2">
+          The freezing winter almost got my bones frozen but the adventurous journey was worth it &#128077;
+        </a>
+      </a>
+    </h3>
+    <div class="card-wrapper">
+      <div class="card-tag">
+        <div class="love-button"><i class="bi bi-heart"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-chat-fill"></i></div>
+                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-share-fill"></i></div>
+                        <img width="30" height="20" src="./assets/images/icons8-save-30.png">
+                      </div>
+    </div>
+
+
+    <div class="card-wrapper">
+      <div class="profile-card">
+        <img src="./assets/images/author-1.png" width="48" height="48" loading="lazy" alt="Joseph"
+          class="profile-banner">
+        <div>
+          <p class="card-title">Joseph</p>
+          <p class="card-subtitle">25 Nov 2022</p>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Comment Section -->
+    <div>
+      <h2 style="color: aqua;">Comments</h2>
+      <!-- Form to add new comments -->
+      <form class="comment-form">
+        <textarea id="comment" placeholder="Write your comment here..." rows="4"></textarea>
+        <button type="button" onclick="postComment()">Comment</button>
+      </form>
+      <!-- List of comments -->
+      <ul class="comments" id="comments-list">
+        <!-- Comments will appear here -->
+      </ul>
+    </div>
+    <!-- End of Comment Section -->
+
+  </div>
+
+
+</div>
+</li>
+</section>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+  <script>
+    // Get the love button element
+    var loveButton = document.querySelector(".love-button");
+
+    // Add a click event listener to the love button
+    loveButton.addEventListener("click", function() {
+      // Toggle the liked class on the love button
+      loveButton.classList.toggle("liked");
+      // Change the color of the heart icon to red
+      var heartIcon = document.querySelector(".bi bi-heart");
+      heartIcon.classList.add("bi bi-heart-filled");
+      // Change the color of the text to white
+      var text = document.querySelector(".bi bi-heart");
+      text.classList.remove("bi bi-heart-filled");
+      text.classList.add("bi bi-heart-empty");
+      // Change the color of the background to red
+      var body = document.body;
+      body.classList.remove("bg-lightblue");
+      body.classList.add("bg-red");
+    });
+  </script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
