@@ -45,5 +45,11 @@
             event.preventDefault();
             getdelModal.style.display = "block";
         })
+
+        let getDelAcctCancel = document.querySelector(".del_acct_cancel");
+        getDelAcctCancel.addEventListener("click", (event) => {
+            event.preventDefault();
+            getdelModal.style.display = "none";
+        })
     </script>
 {% endblock %}

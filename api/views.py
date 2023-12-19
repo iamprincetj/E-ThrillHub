@@ -18,13 +18,18 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('index.html', user=current_user)
+    page = request.args.get('page', default=1, type=int)
+    posts_per_page = 5
+    offset = (page - 1) * posts_per_page
+    posts = Post.objects().skip(offset).limit(posts_per_page).order_by('-timestamp')
+    post_len = len(Post.objects())
+    return render_template('index.html', user=current_user, post=posts, page=page, post_len=post_len, posts_per_page=posts_per_page)
 
 @views.route('/news', methods=['GET', 'POST'])
 @login_required
 def news():
     page = request.args.get('page', default=1, type=int)
-    posts_per_page = 5
+    posts_per_page = 2
     offset = (page - 1) * posts_per_page
     posts = Post.objects().skip(offset).limit(posts_per_page).order_by('-timestamp')
     post_len = len(Post.objects())
@@ -115,7 +120,7 @@ def makepost():
     post.save()
     print(title, link, image.filename, image.name, image.headers, image.mimetype, user.username)
     flash('Post Created!', category='success')
-    return redirect(url_for('views.news'))
+    return redirect(url_for('views.home'))
 
 
 @views.route('/profile/<username>/Edit_Profile', methods=['GET', 'POST'])
@@ -126,6 +131,7 @@ def edit_profile(username):
         new_username = request.form.get('change_username')
         new_email = request.form.get('change_email')
         new_profile_pic = request.files.get('change_profile_pic')
+        bio = request.form.get('bio')
 
         user_email = User.objects(email=new_email).first()
         user_username = User.objects(username=new_username).first()
@@ -141,15 +147,13 @@ def edit_profile(username):
             if new_username != user.username:
                 user.update(username=new_username)
                 flash('Username updated successfully')
-            if new_profile_pic:
-                if user.changed_profile_pic.read():
-                    user.changed_profile_pic.delete()
-                user.changed_profile_pic.put(new_profile_pic)
-                user.save()
-                flash('Profile picture successfully updated')
+            if bio is not None:
+                print(bio)
+                user.update(bio=bio)
+                flash('Bio updated successfully')
         return redirect(url_for("views.edit_profile", username=user.username))
 
-    return render_template('edit.html', user=current_user)
+    return render_template('editprofile.html', user=current_user)
 
 @views.route('/like/<post_id>', methods=['POST', 'GET'])
 def like_post(post_id):
@@ -180,6 +184,7 @@ def comment_post(post_id):
         post.comments.append(comment)
         post.save()
         flash('Successfully dropped your comment', category='success')
+        return redirect(url_for('views.home'))
     len_likes = len(post.likes)
     return render_template('post.html', pos=post, user=current_user, likes=len_likes)
 
@@ -191,3 +196,18 @@ def edit_post(post_id):
         flash('Please input a valid text', category='error')
     print(newText)
     return redirect(f'/profile/{current_user.username}')
+
+@views.route("/change_profile_picture/<username>", methods=['POST'])
+def change_profile_picture(username):
+    if request.method == "POST":
+        user = User.objects(username=username).first()
+        new_profile_pic = request.files.get('changed_profile_pic')
+        print(new_profile_pic, user.changed_profile_pic, request.files)
+        if new_profile_pic:
+            if user.changed_profile_pic.read():
+                user.changed_profile_pic.delete()
+            user.changed_profile_pic.put(new_profile_pic)
+            user.save()
+            flash('Profile picture changed', category='success')
+            return redirect(f'/profile/{username}')
+    return render_template('editprofile.html', user=current_user)

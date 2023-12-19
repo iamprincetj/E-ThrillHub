@@ -11,11 +11,18 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        print(request.form)
         user = User.objects(email=email).first()
+        print(user)
+        if request.form.get('remember_me'):
+            remember = True
+        else:
+            remember = False
         if user:
             if check_password_hash(user.password, password):
                 flash('Logged in Successfully', category='success')
-                login_user(user, remember=True)
+                print(remember)
+                login_user(user, remember=remember)
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again', category='error')
@@ -23,7 +30,7 @@ def login():
             flash("User with that email doesn't exist", category='error')
     if request.method == 'GET' and current_user.is_authenticated:
         return redirect(url_for('views.home'))
-    return render_template("login.html", user=current_user)
+    return render_template("log.html", user=current_user)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -55,7 +62,7 @@ def signup():
             return redirect(url_for('views.home'))
     if request.method == 'GET' and current_user.is_authenticated:
         return redirect(url_for('views.home'))
-    return render_template('signup.html', user=current_user)
+    return render_template('sign.html', user=current_user)
 
 @auth.route('/logout')
 @login_required

@@ -1,81 +1,236 @@
 {% extends "base.html" %}
-
-{% block title %} E-ThrillHub |  {{ searched_user.username }} {% endblock %}
-
+{% block title %} E-ThrillHub | {{ user.username }} {% endblock %}
 {% block content %}
+  <section class="section recent-post" id="recent" aria-labelledby="recent-label" style="margin-top: 8rem;">
+    <div class="container">
 
-    {% if searched_user.changed_profile_pic %}
-        <div id="profile-div">
-            <img src="/image/{{ searched_user.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp"> {{ searched_user.username }}
-        </div>
-    {% else %}
-        <div id="profile-div">
-            <img src="{{ searched_user.profile_pic }}" alt="" id="pro_pic" class="pp"> {{ searched_user.username }}
-        </div>
-    {% endif %}
+      <div class="post-main">
 
-    {% if user == searched_user %}
-        <a href="/profile/{{ user.username }}/Edit_Profile">Edit Profile</a>
-    {% endif %}
+        <h2 class="headline headline-2 section-title">
+          <span class="span">My Profile</span>
+        </h2>
 
+        
+        <ul class="grid-list">
+
+          <li>
+            <div class="recent-post-card">
+
+              <figure class="card-banner img-holder" style="--width: 271; --height: 258;">
+                {% if searched_user.changed_profile_pic %}
+                <img src="/image/{{ searched_user.changed_profile_pic._id }}" width="100%" height="100%" loading="lazy" alt="searched_user.username in E-Thrillhub"
+                  class="profile-banner">
+                {% else %}
+                  <img src="{{ searched_user.profile_pic }}" width="100%" height="100%" loading="lazy" alt="{{ searched_user.username }} in E-Thrillhub"
+                  class="profile-banner">
+                <div>
+                {% endif %}
+              </figure>
+
+              <div class="card-content">
+                {% if user == searched_user %}
+                  <a href="/profile/{{ user.username }}/Edit_Profile" class="card-badge">Edit Profile</a>
+                {% endif %}
+
+                <h3 class="headline headline-3 card-title">
+                  <p href="" class="link hover-2" title="{{ searched_user.username }}">{{ searched_user.username }}</p>
+                </h3>
+
+                <p class="card-text">
+                  {% if searched_user.bio %}{{ searched_user.bio }} {% endif %}
+                </p>
+
+                  </div>
+                  </li>
+                  </ul>
+                  </div>
+                </section>
+
+  <div class="card aside-card insta-card">
+
+    <a href="#" class="logo">
+      <img src="{{ url_for('static',filename='images/E-THRILL.png')}}"width="119" height="37" loading="lazy" alt="">
+    </a>
+
+    
+
+    <!---<ul class="insta-list">
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-1.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-2.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-3.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-4.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-5.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-6.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-7.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-8.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="insta-post img-holder" style="--width: 276; --height: 277;">
+          <img src="./assets/images/insta-post-9.png" width="276" height="277" loading="lazy" alt=""
+            class="img-cover">
+        </a>
+      </li>
+
+    </ul>-->
     {% for pos in post %}
-        <div id="post_container">
-            {% if user == pos.author %}
-            <ul id="post_menu">
-                <button class="edit_post">Edit</button>
-                <button class="delete_post">Delete</button>
-            </ul>
-            {% endif %}
-            <div class="edit_post_modal">
-                <div class="edit_post_modal_content">
-                    <form action="/edit_post/{{ pos.id }}" method="post">
-                        <label for="edit_post_text">Edit Text</label>
-                        <input type="text" name="edit_post_text" id="edit_post_text">
-                        <button type="submit">Submit</button>
-                        <button class="edit_post_cancel">Cancel</button>
-                    </form>
-                </div>
-            </div>
-            <div class="delete_post_modal">
-                <div class="del_post_modal_content">
-                    <h3>Are You Sure You Want to Delete this Post?</h3>
-                    <button><a href="/delete_post/{{ pos.id }}">Yes</a></button>
-                    <button class="del_post_cancel">No</button>
-                </div>
-            </div>
-            {% if pos.author.changed_profile_pic %}
-                <div id="profile-div">
-                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">
-                </div>
-            {% else %}
-                <div id="profile-div">
-                    <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic" class="pp">
-                </div>
-            {% endif %}
-            <div id="post_header">
-                <p id="post_username"> {{ pos.author.username }} </p>
-                <p class="timestamp" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
-                <p class="title"> {{ pos.title }} </p>
-                {% if pos.link_url %}
-                    <a href="{{ pos.link_url }}">{{ pos.link_url }}</a>
-                {% endif %}
-            </div>
-            <div id="post_img">
-                {% if pos.image_path %}
-                    <img src="/image/{{ pos.image_path._id }}" alt="" class="post-image">
-                {% endif %}
-            </div>
-        </div>
-    {% endfor %}
-    <div class="pro_pic_modal">
-        <span class="close profile-pic-close">&times;</span>
-    </div>
-    {% if page < post_len %}
-        <a href="/profile/{{ searched_user.username }}?page={{ page + 1 }}">load more</a>
-    {% endif %}
+    <li>
+      <div class="card feature-card" style="margin: 1rem; color: #ccc8c8;">
 
-    {% if page > 1 %}
-        <a href="/profile/{{ searched_user.username }}?page={{ page - 1 }}">Previous page</a>
-    {% endif %}
+        {% if pos.image_path %}
+          <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+              <img src="/image/{{ pos.image_path._id }}"width="1602" height="903" loading="lazy"
+                alt="{{ pos.author.username }} - {{ pos.title }}" class="img-cover">
+          </figure>
+        {% endif %}
+
+                        <div class="card-content">
+                            <div class="card-wrapper">
+                            <div class="card-tag">
+                                <a href="#" class="span hover-2" >#Movies</a>
+                                <a href="#" class="span hover-2">#Action</a>
+                            </div>
+                            </div>
+                            
+                            <h3 class="headline headline-3">
+                            <p href="#" class="card-title hover-2">{{ pos.title }}</p>
+                            </h3>
+            
+                            <div class="card-wrapper">
+                            <div class="profile-card">
+                                    {% if pos.author.changed_profile_pic %}
+                                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                    class="profile-banner">
+                                {% else %}
+                                    <img src="{{ pos.author.profile_pic }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                    class="profile-banner">
+                                {% endif %}
+                                <div>
+                                <a href="/profile/{{ pos.author.username }}" class="card-title">{{ pos.author.username }}</a>
+                                <p class="card-subtitle timestamp card-subtitle" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
+                                </div>
+                            </div>
+                            {% if user in pos.likes %}
+                                <img src="{{ url_for('static', filename='images/icons8-love-48.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                            {% endif %}
+                            <a href="/comment/{{ pos.id }}">
+                                <img src="{{ url_for('static', filename='images/comment.png' ) }}"  width="30" height="48" loading="lazy" alt="Joseph" class="comment">
+                            </a>
+                            <img src="{{ url_for('static', filename='images/icons8-share-48.png' ) }}" width="30" height="48" loading="lazy" alt="Joseph" class="share">
+                        </div>
+
+        </div>
+
+      </div>
+    </li>
+  {% endfor %}
+
+    </ul>
+
+
+
+
+
+
+
+
+
+
+    <!-- 
+    - #BACK TO TOP
+    -->
+
+    <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+    </a>
+
+    <script>
+    setInterval(function() {
+    var timestamps = document.querySelectorAll('.timestamp');
+    timestamps.forEach(function(timestamp) {
+    var postTime = new Date(timestamp.dataset.timestamp + 'Z');
+    var now = new Date();
+    var diffInSeconds = Math.floor((now - postTime) / 1000);
+    var diffInMinutes = Math.floor(diffInSeconds / 60);
+    var diffInHours = Math.floor(diffInMinutes / 60);
+    var diffInDays = Math.floor(diffInHours / 24);
+
+    if (diffInDays > 0) {
+        timestamp.textContent = diffInDays + ' days ago';
+    } else if (diffInHours > 0) {
+        timestamp.textContent = diffInHours + ' hours ago';
+    } else if (diffInMinutes > 0) {
+        timestamp.textContent = diffInMinutes + ' minutes ago';
+    } else if (diffInSeconds > 0) {
+        timestamp.textContent = diffInSeconds + ' seconds ago';
+    } else {
+        timestamp.textContent = 'Just now';
+    }
+    });
+    // END: ed8c6549bwf9;
+    }, 1000);
+    </script>
+
+  </div>
+
+</div>
+
+</div>
+</section>
 
 {% endblock %}
+
+  <script  src="./script.js"></script>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

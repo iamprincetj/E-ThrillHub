@@ -16,10 +16,10 @@ ca = certifi.where()
 
 uri = f"mongodb+srv://{db_username}:{db_password}@alxportfolio1.rfv02wi.mongodb.net/JustIN_project?retryWrites=true&ssl=true&w=majority"
 
-con = connect(host=uri, tlsCAFile=ca)
-db = con.JustIN_project
-#con = connect("tumblelog")
-#db = con.tumblelog
+#con = connect(host=uri, tlsCAFile=ca)
+#db = con.JustIN_project
+con = connect("tumblelog")
+db = con.tumblelog
 
 
 
@@ -29,6 +29,7 @@ class User(Document, UserMixin):
     password = StringField()
     profile_pic = StringField()
     changed_profile_pic = FileField()
+    bio = StringField()
 
 class Comments(EmbeddedDocument):
     content = StringField()

@@ -1,76 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %} E-ThrillHub | Post . {{ pos.author.username }} - {{ pos.title }} {% endblock %}
+{% block title %} E-ThrillHub | Make a Post {% endblock %}
 
 {% block content %}
-
-    <div id="post_container">
-        {% if pos.author.changed_profile_pic %}
-            <div id="profile-div">
-                <img src="/image/{{ pos.author.changed_profile_pic._id }}" alt="" id="pro_pic" class="pp">
-            </div>
-        {% else %}
-            <div id="profile-div">
-                <img src="{{ pos.author.profile_pic }}" alt="" id="pro_pic" class="pp">
-            </div>
-        {% endif %}
-        <div id="post_header">
-            <a id="post_username" href="/profile/{{ pos.author.username }}"> {{ pos.author.username }} </a>
-            <p class="timestamp" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
-            <p class="title"> {{ pos.title }} </p>
-            {% if pos.link_url %}
-                <a href="{{ pos.link_url }}">{{ pos.link_url }}</a>
-            {% endif %}
-        </div>
-        <div id="post_img">
-            {% if pos.image_path %}
-                <img src="/image/{{ pos.image_path._id }}" alt="" class="post-image">
-            {% endif %}
-        </div>
-
-        {% if likes == 1 %}
-            <h4 id="likes">{{ likes }} like</h4>
-        {% else %}
-            <h4 id="likes">{{ likes }} likes</h4>
-        {% endif %}
+  <form action="/makepost" method="POST" enctype="multipart/form-data" style="margin-top: 14rem;">
+    <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?" required="true"></textarea>
+    <label for="imagepost" id="label-image">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>
+    </label>
+    <input type="file" name="imagepost" id="imagepost">
+    <label for="tags" id="label-tags">
+        <i class="fa fa-tag" aria-hidden="true"></i>
+    </label>
+    <input type="text" name="tags" id="tags">
+    <div id="show-img">
+        <span class="close img-close">×</span>
     </div>
-
-    <div class="like_modal">
-        <span class="close profile-pic-close">&times;</span>
-        <div id="like_modal_content">
-            {% for like in pos.likes %}
-                <h4 id="likers"> {{ like.username }} </h4>
-            {% endfor %}
-        </div>
-    </div>
-
-    <form action="/comment/{{ pos.id }}" method="POST">
-        <label for="comments" style="margin-bottom: 1rem;">Comment</label>
-        <textarea name="comments" id="comments" cols="30" rows="10" placeholder="Enter Comment"></textarea>
-        <button type="submit" style="margin-top: 1rem;">Comment</button>
-    </form>
-
-
-    <div id="comment_container">
-        {% if pos.comments %}
-            {% for comment in pos.comments %}
-                <div class="comment_contents">
-                    <h3 class="commenter">
-                        {{ comment.commenter.username }}
-                    </h3>
-                    <p class="comment_content">
-                        {{ comment.content }}
-                    </p>
-                    <ul>
-                        <li>
-                            <button class="like_comment {% if user in pos.likes %}liked{% else %}unliked{% endif %}" id="{{ pos.id }}">
-                                <i class="fa fa-thumbs-up"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
-
-{% endblock %}
+    <button type="submit">Post</button>
+</form>
+  {% endblock %}

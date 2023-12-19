@@ -1,90 +1,382 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
-    <link rel="shortcut icon" href="../robot.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='robot.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
 
-    <ul id="main-ul">
-        {% if user.is_authenticated %}
-            <li><a href="/">E-ThrillHub</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/profile/{{ user.username }}">Profile</a></li>
-            <li id="post">Post</li>
-            <li><a href="/auth/logout">Logout</a></li>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %} {% endblock %} </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/E-THRILL.png') }}" type="image/svg+xml">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- 
+    - preload images
+  -->
+
+  <link rel="preload" as="image" href="  {{ url_for('static', filename='images/hero-banner.png') }}">
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/pattern-2.svg') }}">
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/pattern-3.svg') }}">
+</head>
+
+<body>
+        <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='images/E-THRILL.png') }}" width="219" height="50" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="{{ url_for('static', filename='images/E-THRILL.png') }}" width="219" height="50" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        {% if current_user.is_authenticated %}
+            <ul class="navbar-list">
+
+            <li>
+                <a href="#home" class="navbar-link hover-1" data-nav-toggler>News</a>
+            </li>
+
+            <li>
+                <a href="/profile/{{ user.username }}" class="navbar-link hover-1" data-nav-toggler>Profile</a>
+            </li>
+
+            <li>
+                <a href="#featured" class="navbar-link hover-1" data-nav-toggler>Posts</a>
+            </li>
+
+            <li>
+                <a href="#recent" class="navbar-link hover-1" data-nav-toggler>Recent Post</a>
+            </li>
+
+            <li>
+                <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+            </li>
+            <div class="right">
+
+                    <a href="/profile/{{ user.username }}">
+                        <li>
+                            {% if user.changed_profile_pic %}
+                            <img src="/image/{{ user.changed_profile_pic._id }}" width="100%" height="100%" loading="lazy" alt="{{ user.username }} in E-Thrillhub"
+                            class="profile-banner">
+                            {% else %}
+                            <img src="{{ user.profile_pic }}" width="100%" height="100%" loading="lazy" alt="user.username in E-Thrillhub"
+                            class="profile-banner">
+                            <div>
+                            {% endif %}
+                        </li>
+                    </a>
+    
+                </div>
+
+            </ul>
+
+        
+
+            <div class="navbar-bottom">
+
+            <div class="profile-card">
+                <!---<img src="{{ url_for('static', filename='images/author-1.png') }}" width="48" height="48" alt="Steven" class="profile-banner">-->
+
+                <div>
+                <p class="card-title">Hello {{ user.username }} !</p>
+
+                <p class="card-subtitle">
+                    You have 3 new messages
+                </p>
+                </div>
+            </div>
+
+            <ul class="link-list">
+
+                <li>
+                <a href="/profile/{{ user.username }}" class="navbar-bottom-link hover-1">Profile</a>
+                </li>
+
+                <li>
+                <a href="#" class="navbar-bottom-link hover-1">Posts Saved</a>
+                </li>
+
+                <li>
+                <a href="#post_modal" class="navbar-bottom-link hover-1 post">Add New Post</a>
+                </li>
+
+                <li>
+                <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
+                </li>
+
+                <li>
+                <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
+                </li>
+
+                <li>
+                <a href="/auth/logout" class="navbar-bottom-link hover-1">Sign Out</a>
+
+                </li>
+                
+            
+
+            </ul>
+
+            </div>
         {% else %}
-            <li><a href="/about">About</a></li>
-            <li><a href="/auth/login">Login</a></li>
-            <li><a href="/auth/signup">Create An Account</a></li>
+            <ul class="link-list">
+
+                <li>
+                <a href="#" class="navbar-bottom-link hover-1">Login</a>
+                </li>
+
+                <li>
+                <a href="#" class="navbar-bottom-link hover-1"> Sign Up </a>
+                </li>
+            </ul>
         {% endif %}
-    </ul>
+
+        <p class="copyright-text">
+          Copyright 2023 © E-Thrillhub
+          Developed by Justin Nwanze & Ndefo Afam
+        </p>
+
+        
+
+      </nav>
+
+    
+      {% if current_user.is_authenticated %}
+        <a href="#post_modal" class="btn btn-primary post" style="margin-bottom:1rem;">New Post</a>
+        <a href="/auth/logout" class="btn btn-primary" style="margin-bottom:1rem;">Sign Out</a>
+      {% else %}
+        {% block auth %}
+        {% endblock %}
+      {% endif %}
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <ol>
+            <ul id="flashed_msg">
                 {% for cat, msg in messages %}
                     {% if cat == 'error' %}
-                        <li id="error">
+                        <li id="msg_error">
                             {{ msg }}
                         </li>
                     {% else %}
-                        <li id="success">
+                        <li id="msg_success">
                             {{ msg }}
                         </li>
                     {% endif %}
                 {% endfor %}
-            </ol>
+            </ul>
         {% endif %}
     {% endwith %}
 
-    <div id="post-div" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form action="/makepost" method="POST" enctype="multipart/form-data">
-                <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?!" required="true"></textarea>
-                <label for="linkpost" id="label-link">
-                    <i class="fa fa-link" aria-hidden="true"></i>
-                </label>
-                <input type="url" name="linkpost" id="linkpost">
-                <label for="imagepost" id="label-image">
-                    <i class="fa fa-picture-o" aria-hidden="true"></i>
-                </label>
-                <input type="file" name="imagepost" id="imagepost">
-                <label for="tags" id="label-tags">
-                    <i class="fa fa-tag" aria-hidden="true"></i>
-                </label>
-                <input type="text" name="tags" id="tags">
-                <div id="show-img">
-                    <span class="close img-close">&times;</span>
+    <!--<div class="container py-5 px-5 bg" style="margin-top: 8rem;">
+        <div class="row justify-content-between bg-white rounded-start-4">
+            <div class="col-lg-7 d-flex justify-content-center align-items-center">
+                <div class="login-card py-lg-0 py-5">
+                    <h2 class="fw-semibold">Welcome to <br>E-THRILLHUB</h2>
+                    <p class="fw-light">Welcome back ! Please login your Account</p>
+                    <form action="#" class="form">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="" class="mb-1 fw-medium">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter Email">
+                            </div>
+                            <div class="col-12">
+                                <label for="" class="mb-1 fw-medium">Password</label>
+                                <input type="password" class="form-control" placeholder="Enter Password">
+                            </div>
+                            <div class="col-12 d-flex justify-content-between mt-3 checkbox">
+                                <div class="d-flex">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label for="" class="fw-medium ms-2">Remember password</label>
+                                </div>
+                                <a href="#" class="fw-semibold text-decoration-none">Forgot password</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn mt-4 w-100">login</button>
+                        <!--<button type="submit" class="btn mt-4 w-100 d-flex justify-content-center align-items-center">
+                            <i class="bi bi-apple me-2 fs-5"></i>
+                            <span>Log in with Apple</span>
+                        </button>
+                        <button type="submit" class="btn mt-4 w-100 d-flex justify-content-center align-items-center">
+                            <img src="google.png" alt="" width="5%" class="me-2">
+                            <img src="https://th.bing.com/th/id/R.677d0a76c3ac4d273a0e5eaf4390b9b9?rik=Q6NZvyd3Q5l68A&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f06%2fgoogles_new_logo.png&ehk=U8tqNPcgWTxUbSquth5DmjOci1GN8mci21H7FfSPTm0%3d&risl=&pid=ImgRaw&r=0" alt="Google Logo" height="25">
+                            <span>Log in with Google</span>
+                        </button>
+                    </form>
+                    <p class="text-center signup mt-4">Don't have an account? <a href="sign.html"
+                            class="text-decoration-none fw-semibold">Sign up now</a></p>
                 </div>
-                <button type="submit">Post</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="loading_modal">
-        <div class="loading_modal-content">
-            <div id="loading">
-                <p> E-ThrillHubbb... </p>
+            </div>
+            <div class="col-lg-5 col-12 p-0">
+                <img src="./statics/images/smiley-man-using-his-smartphone-while-home.jpg"
+                    alt="" class="img-fluid w-100">
             </div>
         </div>
-    </div>
+    </div>-->
+        {% block content  %}
+        {% endblock %}
+        <div id="post_modal">
+            <span class="close">×</span>
+            <div class="post_modal-content">
+                <form action="/makepost" method="POST" enctype="multipart/form-data" style="margin-top: 14rem;">
+                    <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?" required="true"></textarea>
+                    <label for="imagepost" id="label-image">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    </label>
+                    <input type="file" name="imagepost" id="imagepost" style="display: none;">
+                    <label for="tags" id="label-tags">
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                    </label>
+                    <input type="text" name="tags" id="tags">
+                    <div id="show-img">
+                        <span class="close img-close">×</span>
+                    </div>
+                    <button type="submit">Post</button>
+                </form>
+                <script>
+                document.querySelector("#label-image").onclick = function() {
+                    document.querySelector("#imagepost").click();
+                };
+                </script>
+                
+            </div>
+        </div>
 
-    <div>
-        {% block content %} {% endblock %}
-    </div>
-    
+        <div id="loading_modal">
+            <div class="loading_modal-content">
+                <div id="loading">
+                    <p> E-ThrillHubbb... </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.onload = () => {
+                let getLoadDiv = document.querySelector("#loading_modal");
+                getLoadDiv.style.display = "none";
+            };
+
+            setInterval(function() {
+                var timestamps = document.querySelectorAll('.timestamp');
+                timestamps.forEach(function(timestamp) {
+                    var postTime = new Date(timestamp.dataset.timestamp + 'Z');
+                    var now = new Date();
+                    var diffInSeconds = Math.floor((now - postTime) / 1000);
+                    var diffInMinutes = Math.floor(diffInSeconds / 60);
+                    var diffInHours = Math.floor(diffInMinutes / 60);
+                    var diffInDays = Math.floor(diffInHours / 24);
+                    
+                    if (diffInDays > 0) {
+                        timestamp.textContent = diffInDays + ' days ago';
+                    } else if (diffInHours > 0) {
+                        timestamp.textContent = diffInHours + ' hours ago';
+                    } else if (diffInMinutes > 0) {
+                        timestamp.textContent = diffInMinutes + ' minutes ago';
+                    } else if (diffInSeconds > 0) {
+                        timestamp.textContent = diffInSeconds + ' seconds ago';
+                    } else {
+                        timestamp.textContent = 'Just now';
+                    }
+                });
+                // END: ed8c6549bwf9;
+                }, 1000);
+
+        let likeButtons = document.querySelectorAll(".love");
+        likeButtons.forEach((likeButton) => {
+        likeButton.addEventListener("click", () =>{
+            let postId = likeButton.id;
+            let url = '/like/' + postId;
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => res.json())
+            .catch((error) => console.error(error))
+            .then(data => {
+                if (data.has_liked == "liked") {
+                    likeButton.src = "{{ url_for('static', filename='images/icons8-love-48.png') }}";
+                } else {
+                    likeButton.src = "{{ url_for('static', filename='images/icons8-heart-50.png') }}";
+                }
+            });
+        })
+        });
+        let getPostLinks = document.querySelectorAll(".post");
+        let getPostModal = document.querySelector("#post_modal");
+        let getCloseBtn = document.querySelector(".close");
+        let getImgCloseBtn = document.querySelector(".img-close");
+
+        getPostLinks.forEach((postLink) => {
+        postLink.addEventListener("click", () => {
+            getPostModal.style.display = "block";
+            });
+        });
+
+        getCloseBtn.addEventListener("click", () => {
+            getPostModal.style.display = "none";
+        });
+
+            let makePost = () => {
+                let getImagePost = document.querySelector("#imagepost")
+                let showImg = document.querySelector("#show-img");
+                let getImageLabel = document.querySelector("#label-image");
+
+                getImagePost.addEventListener("change", (e) => {
+                    let reader = new FileReader();
+
+                    reader.onload = function () {
+                        var img = document.createElement("img");
+                        img.src = reader.result;
+                        img.className = "img-fluid";
+                        showImg.appendChild(img);
+                    }
+                    reader.readAsDataURL(e.target.files[0]);
+                });
+            }
+
+            makePost();
+        </script>
 </body>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
-    <script src="{{ url_for('static', filename='post.js') }}"></script>
-    <script src="{{ url_for('static', filename='profile.js') }}"></script>
-    <script src="{{ url_for('static', filename='editpost.js') }}"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>

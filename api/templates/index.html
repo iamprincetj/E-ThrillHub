@@ -1,7 +1,304 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %} E-ThrillHub {% endblock %}
+
 {% block content %}
-    <h1>E-ThrillHub</h1>
-    <p>E-ThrillHub is a social media platform where you can share your Recent updates about movies, music, anime... Entertainment with the world.</p>
-{% endblock %}
+
+   <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" aria-label="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Hello World!</p>
+
+            <h1 class="headline headline-1 section-title">
+              Welcome to <span class="span">E-ThrillHub</span>
+            </h1>
+
+            <p class="hero-text">
+              Welcome to our vibrant community where entertainment knows no bounds! Join us and share your diverse talents, moments, and creativity. Let's celebrate all forms of entertainment together!
+            </p>
+
+
+
+          </div>
+
+          <div class="hero-banner">
+
+            <img src="{{ url_for('static', filename='images/e_thrill.png') }}" width="327" height="490" alt="Wren Clark" class="w-100">
+
+            <img src="{{ url_for('static', filename='images/pattern-2.svg') }}" width="27" height="26" alt="shape" class="shape shape-1">
+
+            <img src="{{ url_for('static', filename='images/pattern-3.svg') }}" width="27" height="26" alt="shape" class="shape shape-2">
+
+          </div>
+
+          <img src="{{ url_for('static', filename='images/shadow-1.svg') }}" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="{{ url_for('static', filename='images/shadow-2.svg') }}" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TOPICS
+      -->
+
+      <!--<section class="topics" id="topics" aria-labelledby="topic-label">
+        <div class="container">
+
+          <div class="card topic-card">
+
+            <div class="card-content">
+
+              <h2 class="headline headline-2 section-title card-title" id="topic-label">
+                Status
+              </h2>
+
+              <p class="card-text">
+                Don't miss out on the latest status and posts, latest movies and music posts from around the globe...
+              </p>
+
+              <div class="btn-group">
+                <button class="btn-icon" aria-label="previous" data-slider-prev>
+                  <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+                </button>
+
+                <button class="btn-icon" aria-label="next" data-slider-next>
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </button>
+              </div>
+
+            </div>
+
+            <div class="slider" data-slider>
+              <ul class="slider-list" data-slider-container>
+
+                <li class="slider-item">
+                  <a href="#" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="./assets/images/profile_1.jpg" width="507" height="618" loading="lazy" alt="Sport"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">John Deo</span>
+
+                      <p class="slider-subtitle">Following</p>
+                    </div>
+
+                  </a>
+                </li>
+
+                <li class="slider-item">
+                  <a href="#" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="./assets/images/contact_5.jpg" width="507" height="618" loading="lazy" alt="Travel"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">Ricky Jane</span>
+
+                      <p class="slider-subtitle">Following</p>
+                    </div>
+
+                  </a>
+                </li>
+
+                <li class="slider-item">
+                  <a href="#" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="./assets/images/contact_2.jpg" width="507" height="618" loading="lazy" alt="Design"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">Senuda De Silva</span>
+
+                      <p class="slider-subtitle">Following</p>
+                    </div>
+
+                  </a>
+                </li>
+
+                <li class="slider-item">
+                  <a href="#" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="./assets/images/story_5.jpg" width="507" height="618" loading="lazy" alt="Movie"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">Minidu Thiranjana</span>
+
+                      <p class="slider-subtitle">Following</p>
+                    </div>
+
+                  </a>
+                </li>
+
+                <li class="slider-item">
+                  <a href="#" class="slider-card">
+
+                    <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                      <img src="./assets/images/contact_1.jpg" width="507" height="618" loading="lazy" alt="Lifestyle"
+                        class="img-cover">
+                    </figure>
+
+                    <div class="slider-content">
+                      <span class="slider-title">Charith Disanayaka</span>
+
+                      <p class="slider-subtitle">Following</p>
+                    </div>
+
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      </section>-->
+
+
+
+
+
+      <!-- 
+        - # POST
+      -->
+
+      <section class="section feature" aria-label="feature" id="featured">
+        <div class="container">
+            <h2 class="headline headline-2 section-title">
+              <span class="span">Posts</span>
+            </h2>
+          </div>
+      
+            <ul class="feature-list">
+                {% for pos in post %}
+                    <li>
+                      <div class="card feature-card" style="margin: 1rem;">
+
+                        {% if pos.image_path %}
+                          <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                              <img src="/image/{{ pos.image_path._id }}"width="1602" height="903" loading="lazy"
+                                alt="{{ pos.author.username }} - {{ pos.title }}" class="img-cover">
+                          </figure>
+                        {% endif %}
+                
+                                        <div class="card-content">
+                                            <div class="card-wrapper">
+                                            <div class="card-tag">
+                                                <a href="#" class="span hover-2" >#Movies</a>
+                                                <a href="#" class="span hover-2">#Action</a>
+                                            </div>
+                                            </div>
+                                            
+                                            <h3 class="headline headline-3">
+                                            <p href="#" class="card-title hover-2">{{ pos.title }}</p>
+                                            </h3>
+                            
+                                            <div class="card-wrapper">
+                                            <div class="profile-card">
+                                                    {% if pos.author.changed_profile_pic %}
+                                                    <img src="/image/{{ pos.author.changed_profile_pic._id }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                                    class="profile-banner">
+                                                {% else %}
+                                                    <img src="{{ pos.author.profile_pic }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                                    class="profile-banner">
+                                                {% endif %}
+                                                <div>
+                                                <a href="/profile/{{ pos.author.username }}" class="card-title">{{ pos.author.username }}</a>
+                                                <p class="card-subtitle timestamp card-subtitle" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
+                                                </div>
+                                            </div>
+                                            {% if user in pos.likes %}
+                                                <img src="{{ url_for('static', filename='images/icons8-love-48.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                                            {% else %}
+                                                <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                                            {% endif %}
+                                            <a href="/comment/{{ pos.id }}">
+                                                <img src="{{ url_for('static', filename='images/comment.png' ) }}"  width="30" height="48" loading="lazy" alt="Joseph" class="comment">
+                                            </a>
+                                            <img src="{{ url_for('static', filename='images/icons8-share-48.png' ) }}" width="30" height="48" loading="lazy" alt="Joseph" class="share">
+                                        </div>
+                        
+
+            
+                        <!-- Comment Section -->
+                        <div>
+                            <h2 style="color: aqua;">Comments</h2>
+                            <!-- List of comments -->
+                            <ul class="comments" id="comments-list" style="color: #fff;">
+                            <!-- Comments will appear here -->
+                            {% with last_comment = pos.comments[-1] %}
+                              {% if last_comment %}
+                              <a href="/profile/{{ last_comment.commenter.username }}" style="font-size: 25px;"> {{ last_comment.commenter.username }} </a>
+                              <li style="color: white;"> {{ last_comment.content }} </li>
+                              {% endif %}
+                            {% endwith %}
+                            </ul>
+                            <!-- Form to add new comments -->
+                            <form class="comment-form" action="/comment/{{ pos.id }}" method="POST">
+                            <textarea name="comments" id="comment" placeholder="Write your comment here..." rows="4"></textarea>
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:1rem; width:fit-content;">Comment</button>
+                            </form>
+                        </div>
+                        <!-- End of Comment Section -->
+            
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+      </section>
+          {% if page * posts_per_page < post_len %}
+          <a href="{{ url_for('views.home', page=page + 1) }}">Next</a>
+          {% endif %}
+          {% if page > 1 %}
+            <a href="{{ url_for('views.home', page=page - 1) }}">Previous</a>
+          {% endif %}
+
+
+
+
+  
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+
+  {% endblock %}
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

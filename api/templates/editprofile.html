@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %} E-ThrillHub | Edit {{ user.username }} {% endblock %}
+
+{% block content %}
+    {% if user.changed_profile_pic %}
+        <div id="profile-div" class="profile">
+            <img src="/image/{{ user.changed_profile_pic._id }}" alt="{{ user.username }} Profile Picture" id="profile-picture" class="pp">
+            <p>{{ user.username }}</p>
+            <label for="changed_profile_pic">
+            </label>
+            <input type="file" id="upload-button" />
+        </div>
+    {% else %}
+        <div id="profile-div" class="profile">
+            <img src="{{ user.profile_pic }}" alt="{{ user.username }} Profile Picture" id="profile-picture" class="pp">
+            <p> {{ user.username }} </p>
+            <input type="file" id="upload-button" />
+        </div>
+    {% endif %}
+
+    
+    <div>
+      <h2 style="text-align: center;" >Edit Profile</h2>
+
+      <div class="pro_pic_modal">
+        <span class="close profile-pic-close">x</span>
+
+      </div>
+    
+      <form action="/profile/{{ user.username }}/Edit_Profile" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;" class="form_edit_profile">
+        <label for="change_username">Edit username</label>
+        <input
+          type="text"
+          name="change_username"
+          id="change_username"
+          value="{{ user.username }}"
+        />
+        <label for="change_email">Edit Email</label>
+        <input
+          type="email"
+          name="change_email"
+          id="change_email"
+          value="{{ user.email }}"
+        />
+        
+        <label for="bio">Edit Bio</label>
+        <textarea
+          type="text"
+          name="bio"
+          id="bio"
+        >
+            {% if user.bio %} {{ user.bio }} {% endif %} 
+        </textarea>
+        
+        <button type="submit" style="margin-top: 7px;">Submit</button>
+        <button type="button" id="delete_acct" style="margin-top: 7px;">Delete Account</button>
+    </form>
+
+    
+      <div class="del_acct_modal">
+        <div class="del_acct_modal_content">
+            <h3>Are you sure?</h3>
+            <a href="/auth/delete_account">Yes</a>
+            <span class="del_acct_cancel" style="cursor: pointer;">No</span>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const getDelAcct = document.querySelector("#delete_acct");
+        let getdelModal = document.querySelector(".del_acct_modal");
+        let getdelCancel = document.querySelector(".del_acct_cancel");
+        getDelAcct.addEventListener("click", (event) => {
+          event.preventDefault();
+          getdelModal.style.display = "block";
+        });
+  
+        getdelCancel.addEventListener("click", () => {
+          getdelModal.style.display = "none";
+        })
+  
+        const getProfilePic = document.querySelector("#profile-picture");
+        let getProfilePicModal = document.querySelector(".pro_pic_modal");
+        let getProfilePicClose = document.querySelector(".profile-pic-close");
+  
+        getProfilePic.addEventListener("click", (event) => {
+            if (event.target == getProfilePicModal) {
+                getProfilePicModal.style.display = "none";
+            }
+
+            if (!document.querySelector("#changed_profile_pic")) {
+                let newImg = document.createElement("img");
+                newImg.src = getProfilePic.src;
+                newImg.style.width = "50%";
+                newImg.style.height = "50%";
+                newImg.style.margin = "auto";
+                newImg.style.display = "block";
+                newImg.style.borderRadius = "50%";
+                newImg.style.border = "2px solid #000";
+                newImg.style.boxShadow = "0 0 10px #000";
+                let newform = document.createElement("form");
+                newform.action = "/change_profile_picture/{{ user.username }}";
+                newform.method = "POST";
+                newform.enctype = "multipart/form-data";
+                let newinput = document.createElement("input");
+                newinput.type = "file";
+                newinput.name = "changed_profile_pic";
+                newinput.id = "changed_profile_pic";
+                newinput.style.display = "block";
+                newinput.style.margin = "auto";
+                newinput.style.marginTop = "1rem";
+                let newbutton = document.createElement("button");
+                newbutton.type = "submit";
+                newbutton.style.display = "block";
+                newbutton.style.margin = "auto";
+                newbutton.style.marginTop = "1rem";
+                newbutton.textContent = "Submit";
+                getProfilePicModal.appendChild(newImg);
+                newform.appendChild(newinput);
+                newform.appendChild(newbutton);
+                getProfilePicModal.appendChild(newform);
+            }
+            getProfilePicModal.style.display = "block";
+
+        });
+
+        getProfilePicClose.addEventListener("click", () => {
+            getProfilePicModal.style.display = "none";
+        });
+      </script>
+{% endblock %}
