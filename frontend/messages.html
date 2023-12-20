@@ -39,6 +39,66 @@
   <link rel="preload" as="image" href="./assets/images/hero-banner.png">
   <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
   <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+  <style>
+    /* Basic CSS styling for the received messages page */
+
+
+.messages-section {
+margin: 20px auto;
+max-width: 800px;
+padding: 20px;
+background-color: aqua;
+border-radius: 5px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-list {
+/* Add styling for message list */
+}
+
+.message {
+border: 1px solid #007bff;
+margin-bottom: 15px;
+padding: 10px;
+border-radius: 5px;
+}
+
+.message-header {
+display: flex;
+justify-content: space-between;
+margin-bottom: 5px;
+}
+
+.message-body {
+/* Add styles for message body */
+}
+
+.h2, h2 {
+    font-size: calc(1.325rem + .9vw);
+    color: rgb(84, 80, 80);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: rgb(84, 80, 80);
+}
+
+.reply-btn {
+padding: 5px 10px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.reply-btn:hover {
+background-color: #0056b3;
+}
+
+</style>
 
 </head>
 
@@ -86,7 +146,7 @@
           </li>
 
           <li>
-            <a href="messages.html" class="navbar-link hover-1" data-nav-toggler>Messages</a>
+            <a href="#" class="navbar-link hover-1" data-nav-toggler>Messages</a>
           </li>
           <div class="right">
 
@@ -176,23 +236,26 @@
 
   <main>
     <article>
-
-
-          <div class="hero-banner">
+    <section>
+        <div class="container">
+          <div class="hero-banner" style="margin-top: 12rem;">
 
            
 
-            <img src="./assets/images/pattern-2.svg" width="27" height="26" alt="shape" class="shape shape-1">
-
-            <img src="./assets/images/pattern-3.svg" width="27" height="26" alt="shape" class="shape shape-2">
-
+           
           </div>
 
           <img src="./assets/images/shadow-1.svg" width="500" height="800" alt="" class="hero-bg hero-bg-1">
 
           <img src="./assets/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
 
+        <div style="margin-top:4rem" >
+            <h2 class="headline headline-2 section-title">
+                <span class="span">Messages</span>
+              </h2>  
+        <p>View and Reply to Messages</p>
         </div>
+    </div>
       </section>
 
 
@@ -201,91 +264,32 @@
 
 
 
+
       <!-- 
-        - # POST
+        - # Messages
       -->
-
-      <section class="section feature" aria-label="feature" id="featured">
-        <div class="container">
-
-            <h2 class="headline headline-2 section-title">
-              <span class="span">What People Say</span>
-            </h2>
-  
-            <p class="section-text">
-              You can add your comment about this post
-            </p>
-  
-            <ul class="feature-list">
-  
-              <li>
-                <div class="card feature-card">
-                    <div class="love-button" style="color: #1493DF;"><i class="bi bi-three-dots"></i></div>
-                  <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
-                    <img src="./assets/images/1099082-peaky-blinders.jpg" width="1602" height="903" loading="lazy"
-                      alt="Self-observation is the first step of inner unfolding" class="img-cover">
-                  </figure>
-      
-                  <div class="card-content">
-                    <div class="card-wrapper">
-                      <div class="card-tag">
-                        <div class="love-button"><i class="bi bi-heart"></i></div>
-                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-chat-fill"></i></div>
-                        <div class="love-button" style="color: #1493DF;"><i class="bi bi-share-fill"></i></div>
-                        <img width="30" height="20" src="./assets/images/icons8-save-30.png">
-                      </div>
-                    </div>
-                    
-                    <h3 class="headline headline-3">
-                      <a href="#" class="card-title hover-2">Peaky Blinders. My favorite Epic movie. Can watch this over and over again. If you are bored on a weekend, I recommend you see this movie</a>
-                    </h3>
-      
-                    <div class="card-wrapper">
-                      <div class="profile-card">
-                        <img src="./assets/images/author-1.png" width="48" height="48" loading="lazy" alt="Joseph"
-                          class="profile-banner">
-                        <div>
-                          <p class="card-title">Joseph</p>
-                          <p class="card-subtitle">25 Nov 2023</p>
-                        </div>
-                      </div>
-                     
+      <main>
+        <section class="messages-section">
+          <h2>Received Messages</h2>
+          <div class="message-list">
+            <!-- Messages will be dynamically loaded here -->
+            <!-- Example message structure: -->
+       
+            <div class="message">
+              <div class="message-header">
+                <p>From: Username</p>
+                <p>Sent: Date & Time</p>
+              </div>
+              <div class="message-body">
+                <p>Message content goes here...</p>
+                <button class="reply-btn">Reply</button>
+              </div>
             </div>
-                  </div>
-                  
-
-      
-                  <!-- Comment Section -->
-                  <div>
-                    
-                    <!-- Form to add new comments -->
-                    <form class="comment-form">
-                      <textarea id="comment" placeholder="Write your comment here..." rows="4"></textarea>
-                      <button type="button" onclick="postComment()">Comment</button>
-                    </form>
-                    <!-- List of comments -->
-                    <ul class="comments" id="comments-list">
-                      <!-- Comments will appear here -->
-                    </ul>
-                  </div>
-                  <!-- End of Comment Section -->
-      
-                </div>
-              </li>
-            </ul>
-      
-      
-
-        
-    </section>
-
-    <section class="section feature" aria-label="feature" id="featured">
-        <div class="container">
-  
-            <h2 class="headline headline-2 section-title">
-                <span class="span" style="display: flex;">Comments</span>
-              </h2>
-        
+            
+          </div>
+        </section>
+      </main>
+    
   
         
               
