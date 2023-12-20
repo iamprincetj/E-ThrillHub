@@ -252,14 +252,19 @@
                             <!-- Comments will appear here -->
                             {% with last_comment = pos.comments[-1] %}
                               {% if last_comment %}
-                              <a href="/profile/{{ last_comment.commenter.username }}" style="font-size: 25px;"> {{ last_comment.commenter.username }} </a>
-                              <li style="color: white;"> {{ last_comment.content }} </li>
+                              <div>
+                                <a href="/profile/{{ last_comment.commenter.username }}" style="font-size: 25px;"> {{ last_comment.commenter.username }}                              <span class="card-subtitle timestamp card-subtitle" data-timestamp="{{ last_comment.timestamp.isoformat() }}" style="font-size: 0.5em;">
+                                    Loading...
+                                  </span>
+                                </a>
+                                <li style="color: white; margin-left: 2rem;"> {{ last_comment.content }} </li>
+                              </div>
                               {% endif %}
                             {% endwith %}
                             </ul>
                             <!-- Form to add new comments -->
                             <form class="comment-form" action="/comment/{{ pos.id }}" method="POST">
-                            <textarea name="comments" id="comment" placeholder="Write your comment here..." rows="4"></textarea>
+                            <textarea name="comments" id="comment" placeholder="Write your comment here..." rows="4" required="true"></textarea>
                             <button type="submit" class="btn btn-primary" style="margin-bottom:1rem; width:fit-content;">Comment</button>
                             </form>
                         </div>

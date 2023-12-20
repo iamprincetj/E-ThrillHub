@@ -184,9 +184,9 @@ def comment_post(post_id):
         post.comments.append(comment)
         post.save()
         flash('Successfully dropped your comment', category='success')
-        return redirect(url_for('views.home'))
+        return redirect(url_for('views.comment_post', post_id=post_id))
     len_likes = len(post.likes)
-    return render_template('post.html', pos=post, user=current_user, likes=len_likes)
+    return render_template('selectedpost.html', pos=post, user=current_user, likes=len_likes)
 
 @views.route("/edit_post/<post_id>", methods=['POST'])
 def edit_post(post_id):

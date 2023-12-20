@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %} E-ThrilHub ... {{ pos.author.username }}'s post {% endblock %}
+
+{% block content %}
+  <main>
+    <article>
+
+
+          <div class="hero-banner">
+
+           
+
+            {{ url_for('static', filename='images/pattern-2.svg') }}
+            <img src="{{ url_for('static', filename='images/pattern-2.svg') }}" width="27" height="26" alt="shape" class="shape shape-1">
+
+            <img src="{{ url_for('static', filename='images/pattern-3.svg') }}" width="27" height="26" alt="shape" class="shape shape-2">
+
+          </div>
+
+          <img src="{{ url_for('static', filename='images/shadow-1.svg') }}" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="{{ url_for('static', filename='images/shadow-2.svg') }}" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+      <!-- 
+        - # POST
+      -->
+
+      <section class="section feature" aria-label="feature" id="featured">
+        <div class="container">
+
+            <h2 class="headline headline-2 section-title">
+              <span class="span">What People Say</span>
+            </h2>
+  
+            <p class="section-text">
+              You can add your comment about this post
+            </p>
+  
+            <ul class="feature-list">
+  
+              <li>
+                <div class="card feature-card" style="margin: 1rem; color: #ccc8c8;">
+          
+                  {% if pos.image_path %}
+                    <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                        <img src="/image/{{ pos.image_path._id }}"width="1602" height="903" loading="lazy"
+                          alt="{{ pos.author.username }} - {{ pos.title }}" class="img-cover">
+                    </figure>
+                  {% endif %}
+          
+                                  <div class="card-content">
+                                      <div class="card-wrapper">
+                                      <div class="card-tag">
+                                          <a href="#" class="span hover-2" >#Movies</a>
+                                          <a href="#" class="span hover-2">#Action</a>
+                                      </div>
+                                      </div>
+                                      
+                                      <h3 class="headline headline-3">
+                                      <p href="#" class="card-title hover-2">{{ pos.title }}</p>
+                                      </h3>
+                      
+                                      <div class="card-wrapper">
+                                      <div class="profile-card">
+                                              {% if pos.author.changed_profile_pic %}
+                                              <img src="/image/{{ pos.author.changed_profile_pic._id }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                              class="profile-banner">
+                                          {% else %}
+                                              <img src="{{ pos.author.profile_pic }}" width="48" height="48" loading="lazy" alt="pos.author.username in E-Thrillhub"
+                                              class="profile-banner">
+                                          {% endif %}
+                                          <div>
+                                          <a href="/profile/{{ pos.author.username }}" class="card-title">{{ pos.author.username }}</a>
+                                          <p class="card-subtitle timestamp card-subtitle" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
+                                          </div>
+                                      </div>
+                                      {% if user in pos.likes %}
+                                          <img src="{{ url_for('static', filename='images/icons8-love-48.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                                      {% else %}
+                                          <img src="{{ url_for('static', filename='images/icons8-heart-50.png') }}" width="30" height="48" loading="lazy" alt="Joseph" class="love" id="{{ pos.id }}">
+                                      {% endif %}
+                                      <a href="/comment/{{ pos.id }}">
+                                          <img src="{{ url_for('static', filename='images/comment.png' ) }}"  width="30" height="48" loading="lazy" alt="Joseph" class="comment">
+                                      </a>
+                                      <img src="{{ url_for('static', filename='images/icons8-share-48.png' ) }}" width="30" height="48" loading="lazy" alt="Joseph" class="share">
+                                  </div>
+                     
+            </div>
+                  </div>
+                  
+
+      
+                  <!-- Comment Section -->
+                  <div>
+                    
+                    <!-- Form to add new comments -->
+                    <form class="comment-form" action="/comment/{{ pos.id }}" method="POST">
+                      <textarea name="comments" id="comment" placeholder="Write your comment here..." rows="4" required="true"></textarea>
+                      <button type="submit" class="btn btn-primary" style="margin-bottom:1rem; width:fit-content;">Comment</button>
+                      </form>
+                    <!-- List of comments -->
+                  </div>
+                  <!-- End of Comment Section -->
+      
+                </div>
+              </li>
+            </ul>
+      
+      
+
+        
+    </section>
+
+    <section class="section feature" aria-label="feature" id="featured">
+        <div class="container">
+  
+            <h2 class="headline headline-2 section-title">
+                <span class="span" style="display: flex;">Comments</span>
+                <ul class="comments" id="comments-list">
+                  {% with comments = pos.comments %}
+                    {% if comments %}
+                      {% for comment in comments %}
+                        {% if comment.content %}
+                        <div class="comment-contents" style="margin: 1rem;">
+                          <a href="/profile/{{ comment.commenter.username }}" style="font-size: 25px;"> {{ comment.commenter.username }}
+                            <span class="card-subtitle timestamp card-subtitle" data-timestamp="{{ comment.timestamp.isoformat() }}" style="font-size: 0.5em;">
+                              Loading...
+                            </span>
+                          </a>
+                          <li style="color: white; margin-left: 2rem ;">
+                            {{ comment.content }}
+                          </li>
+                        </div>
+                        {% endif %}
+                      {% endfor %}
+                    {% else %}
+                        <h3 style="margin: 1rem;">
+                          No comments yet, be the first to comment 😁
+                        </h3>
+                    {% endif %}
+                  {% endwith %}
+                </ul>
+            </h2>
+        </div>
+    </section>
+        
+  
+        
+              
+               
+
+    
+
+
+  
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+{% endblock %}

@@ -13,6 +13,8 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/E-THRILL.png') }}" type="image/svg+xml">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <!-- 
     - google font link
@@ -252,23 +254,18 @@
                 <form action="/makepost" method="POST" enctype="multipart/form-data" style="margin-top: 14rem;">
                     <textarea name="title" id="post-content" cols="30" rows="10" placeholder="What's popping?" required="true"></textarea>
                     <label for="imagepost" id="label-image">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                        <i class="bi bi-image" aria-hidden="true"></i>
                     </label>
                     <input type="file" name="imagepost" id="imagepost" style="display: none;">
                     <label for="tags" id="label-tags">
-                        <i class="fa fa-tag" aria-hidden="true"></i>
+                        <i class="bi bi-tag" aria-hidden="true"></i>
                     </label>
-                    <input type="text" name="tags" id="tags">
+                    <input type="text" name="tags" id="tags" placeholder="#">
                     <div id="show-img">
                         <span class="close img-close">×</span>
                     </div>
                     <button type="submit">Post</button>
                 </form>
-                <script>
-                document.querySelector("#label-image").onclick = function() {
-                    document.querySelector("#imagepost").click();
-                };
-                </script>
                 
             </div>
         </div>
@@ -298,13 +295,31 @@
                     var diffInDays = Math.floor(diffInHours / 24);
                     
                     if (diffInDays > 0) {
-                        timestamp.textContent = diffInDays + ' days ago';
+                        if (diffInDays > 1) {
+                            timestamp.textContent = diffInDays + ' days ago';
+                        }
+                        else {
+                            timestamp.textContent = diffInDays + ' day ago';
+                        }
                     } else if (diffInHours > 0) {
-                        timestamp.textContent = diffInHours + ' hours ago';
+                        if (diffInHours > 1) {
+                            timestamp.textContent = diffInHours + ' hours ago';
+                        }
+                        else {
+                            timestamp.textContent = diffInHours + ' hour ago';
+                        }
                     } else if (diffInMinutes > 0) {
-                        timestamp.textContent = diffInMinutes + ' minutes ago';
+                        if (diffInMinutes > 1) {
+                            timestamp.textContent = diffInMinutes + ' minutes ago';
+                        } else {
+                            timestamp.textContent = diffInMinutes + ' minute ago';
+                        }
                     } else if (diffInSeconds > 0) {
-                        timestamp.textContent = diffInSeconds + ' seconds ago';
+                        if (diffInSeconds > 1) {
+                            timestamp.textContent = diffInSeconds + ' seconds ago';
+                        } else {
+                            timestamp.textContent = diffInSeconds + ' second ago';
+                        }
                     } else {
                         timestamp.textContent = 'Just now';
                     }
@@ -355,15 +370,17 @@
                 let getImageLabel = document.querySelector("#label-image");
 
                 getImagePost.addEventListener("change", (e) => {
-                    let reader = new FileReader();
-
-                    reader.onload = function () {
-                        var img = document.createElement("img");
-                        img.src = reader.result;
-                        img.className = "img-fluid";
-                        showImg.appendChild(img);
+                    if (!document.querySelector(".img-fluid")) {
+                        alert("yes")
+                        let reader = new FileReader();
+                        reader.onload = function () {
+                            var img = document.createElement("img");
+                            img.src = reader.result;
+                            img.className = "img-fluid";
+                            showImg.appendChild(img);
+                        }
+                        reader.readAsDataURL(e.target.files[0]);
                     }
-                    reader.readAsDataURL(e.target.files[0]);
                 });
             }
 
@@ -377,6 +394,8 @@
     crossorigin="anonymous"></script>
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>
