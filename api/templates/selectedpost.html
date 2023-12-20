@@ -81,7 +81,7 @@
                                           {% endif %}
                                           <div>
                                           <a href="/profile/{{ pos.author.username }}" class="card-title">{{ pos.author.username }}</a>
-                                          <p class="card-subtitle timestamp card-subtitle" data-timestamp="{{ pos.timestamp.isoformat() }}">Loading...</p>
+                                          <p class="card-subtitle timestamp card-subtitle" data-timestamp="{{ pos.timestamp.isoformat() }}"></p>
                                           </div>
                                       </div>
                                       {% if user in pos.likes %}
@@ -134,7 +134,7 @@
                         <div class="comment-contents" style="margin: 1rem;">
                           <a href="/profile/{{ comment.commenter.username }}" style="font-size: 25px;"> {{ comment.commenter.username }}
                             <span class="card-subtitle timestamp card-subtitle" data-timestamp="{{ comment.timestamp.isoformat() }}" style="font-size: 0.5em;">
-                              Loading...
+                              
                             </span>
                           </a>
                           <li style="color: white; margin-left: 2rem ;">
