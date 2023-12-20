@@ -43,7 +43,7 @@ class Post(Document):
     author = ReferenceField(User, reverse_delete_rule=CASCADE)
     image_path = FileField()
     link_url = StringField()
-    tags = ListField(StringField(max_length=30))
+    tags = StringField(max_length=30)
     comments = ListField(EmbeddedDocumentField(Comments))
     likes = ListField(ReferenceField(User))
     timestamp = DateTimeField(default=datetime.utcnow)

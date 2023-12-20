@@ -110,15 +110,16 @@ def makepost():
     title = request.form.get('title')
     link = request.form.get('linkpost')
     image = request.files.get('imagepost')
+    tag = request.form.get('tags')
     post = Post(author=user)
     if len(title) == "":
         flash('title must not be empty, say something', category='error')
     post.title = title
     post.link_url = link
+    post.tags = tag
     if image.filename != "":
         post.image_path.put(image)
     post.save()
-    print(title, link, image.filename, image.name, image.headers, image.mimetype, user.username)
     flash('Post Created!', category='success')
     return redirect(url_for('views.home'))
 

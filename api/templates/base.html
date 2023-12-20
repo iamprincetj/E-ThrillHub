@@ -260,9 +260,8 @@
                     <label for="tags" id="label-tags">
                         <i class="bi bi-tag" aria-hidden="true"></i>
                     </label>
-                    <input type="text" name="tags" id="tags" placeholder="#">
+                    <input type="text" name="tags" id="tags" placeholder="#" required="true" oninvalid="this.setCustomValidity('Please, you must add a tag e.g #anime, #music...')" oninput="this.setCustomValidity('')">
                     <div id="show-img">
-                        <span class="close img-close">×</span>
                     </div>
                     <button type="submit">Post</button>
                 </form>
@@ -371,7 +370,6 @@
 
                 getImagePost.addEventListener("change", (e) => {
                     if (!document.querySelector(".img-fluid")) {
-                        alert("yes")
                         let reader = new FileReader();
                         reader.onload = function () {
                             var img = document.createElement("img");
