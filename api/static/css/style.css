@@ -510,7 +510,7 @@ color: #111727;
 }
 
   #featured {
-    margin-left: 10rem;
+    margin-left: 0rem;
   }
 
 
@@ -1667,7 +1667,7 @@ form button {
   }
 
   #featured {
-    margin-left: 10rem;
+    margin-left: 0rem;
   }
 
   .feature-bg {
@@ -1732,7 +1732,7 @@ form button {
     }
 
     #featured {
-      margin-left: 10rem;
+      margin-left: 0rem;
     }
 
     form button {
